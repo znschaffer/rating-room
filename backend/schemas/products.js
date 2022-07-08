@@ -93,18 +93,8 @@ export default {
 			name: 'tags',
 			type: 'array',
       of: [{
-        type: 'string',
-        options: {
-          list: [
-            { title: 'Product', value: 'product' },
-            { title: 'Food', value: 'food' },
-            { title: 'Hobby', value: 'hobby' },
-            { title: 'Media', value: 'media' },
-            { title: 'Concept', value: 'concept' },
-            { title: 'Feeling', value: 'feeling' },
-            { title: 'Exercise', value: 'exercise' }
-          ]
-        }
+        type: 'reference',
+        to: [{type: 'tag'}]
       }]
 
 		},

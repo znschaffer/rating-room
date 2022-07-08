@@ -10,6 +10,11 @@ export default {
 			type: 'string'
 		},
     {
+      title: 'Description',
+      name: 'description',
+      type: 'text'
+    },
+    {
       title: 'Zane image',
       name: 'zane',
       type: 'image'
@@ -18,6 +23,12 @@ export default {
       title: 'Xinrui image',
       name: 'xyn',
       type: 'image'
-    }
+    },
 	],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'description'
+    }
+  }
 };
