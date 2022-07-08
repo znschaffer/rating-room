@@ -3,14 +3,6 @@ export default {
 	name: 'rating',
 	type: 'document',
     fields: [
-        {
-            title: 'Rating Slug',
-            name: 'slug',
-            type: 'slug',
-            options: {
-                source: (doc) => `${doc.name}_${doc.rating}_${doc.emotion}_${doc._id.slice(-6)}`
-            }
-        },
 		{
 			title: 'Rater Name',
 			name: 'name',
@@ -63,12 +55,20 @@ export default {
             type: 'text'
         },
         {
+            title: 'Rating Slug',
+            name: 'slug',
+            type: 'slug',
+            options: {
+                source: (doc) => `${doc.name}_${doc.rating}_${doc.emotion}_${doc._id.slice(-6)}`
+            }
+        },
+        {
             title: 'Product',
             name: 'product',
             type: 'reference',
+            weak: true,
             to: [{type: 'product'}]
         }
-
 	],
     preview: {
         select: {
