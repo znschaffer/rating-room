@@ -1,5 +1,7 @@
 <script>
-  import "../app.css"
+	import '../app.css';
 </script>
 
-<slot />
+<main style="padding: 1em">
+	<slot />
+</main>
