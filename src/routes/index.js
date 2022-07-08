@@ -1,15 +1,15 @@
 console.log('hello');
 import { client } from '$lib/sanityClient';
-
+/** @type {import('@sveltejs/kit').RequestHandler} */
 export async function get() {
-	const products = '*[_type == "product"]';
-	const data = await client.fetch(products);
+	const query = '*[_type == "product"]';
+	const data = await client.fetch(query);
 
 	if (data) {
 		return {
 			status: 200,
 			body: {
-                products: data
+				data: data
 			}
 		};
 	}
