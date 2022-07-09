@@ -8,7 +8,9 @@
 	{#each products as product}
 		<li class="product">
 			<a on:click={currentProduct.set(product)} href="/product">
+				{#if product.image}
 				<img src={urlFor(product.image).width(125).height(125).url()} alt={product.name} />
+				{/if}
 			</a>
 		</li>
 	{/each}

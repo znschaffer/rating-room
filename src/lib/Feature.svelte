@@ -9,7 +9,9 @@
 	<button on:click={prevProduct}>prev</button>
 	<button on:click={nextProduct}>next</button>
 	<p>{product.name}</p>
+	{#if product.image}
 	<img src={urlFor(product.image).url()} alt={product.name} />
+	{/if}
 </div>
 
 <style>
