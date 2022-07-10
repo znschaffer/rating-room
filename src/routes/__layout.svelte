@@ -4,6 +4,7 @@
 	import Header from '$lib/Layout/Header.svelte'
 	import Search from '$lib/Layout/Search.svelte'
 	import Filters from '$lib/Layout/Filters.svelte';
+	import Sort from '$lib/Layout/Sort.svelte';
 
 	const { main,  sidebar } = {
 		main: 'flex w-screen h-screen sfmono',
@@ -17,7 +18,6 @@
 		<Search />
 		<Filters />
 		<Products />
-
 	</div>
 	<slot />
 </main>

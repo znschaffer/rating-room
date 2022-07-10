@@ -62,7 +62,7 @@
 <div class={container}>
 	<div class={filterBar}>
 		<div class={filterTitle}>Filter</div>
-		<button on:click={reset}>Clear</button>
+		<button on:click={reset}> ✖️ </button>
 	</div>
 
 	<select on:change={filter} class={filterStyle} name="category" bind:value={selectedCat}>
