@@ -1,16 +1,12 @@
 <script>
 	import { urlFor } from './sanityClient';
 	export let product;
-	export let nextProduct;
-	export let prevProduct;
 </script>
 
 <div class="content">
-	<button on:click={prevProduct}>prev</button>
-	<button on:click={nextProduct}>next</button>
 	<p>{product.name}</p>
 	{#if product.image}
-	<img src={urlFor(product.image).url()} alt={product.name} />
+		<img src={urlFor(product.image).url()} alt={product.name} />
 	{/if}
 </div>
 

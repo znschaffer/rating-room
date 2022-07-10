@@ -1,15 +1,16 @@
 <script>
 	import { urlFor } from './sanityClient';
 	import { currentProduct } from '$lib/stores.js';
+	import { parseName } from '$helpers/parse.js';
 	export let products;
 </script>
 
 <div class="content">
 	{#each products as product}
 		<li class="product">
-			<a on:click={currentProduct.set(product)} href="/product">
+			<a on:click={currentProduct.set(product)} href={parseName(product.name)}>
 				{#if product.image}
-				<img src={urlFor(product.image).width(125).height(125).url()} alt={product.name} />
+					<img src={urlFor(product.image).width(125).height(125).url()} alt={product.name} />
 				{/if}
 			</a>
 		</li>
