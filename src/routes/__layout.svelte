@@ -17,6 +17,7 @@
 		<Header />
 		<Search />
 		<Filters />
+		<Sort/>
 		<Products />
 	</div>
 	<slot />

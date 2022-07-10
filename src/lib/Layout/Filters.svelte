@@ -1,6 +1,7 @@
 <script>
 	import { productsView, products, tags } from '$lib/stores';
 	import normalize from '$helpers/normalize';
+	import getAvgRating from '$helpers/getAvgRating';
 	let selectedCat;
 	let selectedRating;
 
@@ -20,16 +21,9 @@
 					return;
 				}
 				productsView.set(
-					$products.filter((product) => {
-						if (product.rating) {
-							if (product.rating.length === 1 && product.rating[0].rating >= Number(value))
-								return true;
-							const avgRating =
-								product.rating.reduce((prev, curr) => prev.rating + curr.rating) /
-								product.rating.length;
-							if (avgRating >= Number(value)) return true;
-						} else return false;
-					})
+					$products.filter(
+						(product) => product.rating && getAvgRating(product.rating) >= Number(value)
+					)
 				);
 				break;
 			case 'category':
@@ -55,7 +49,7 @@
 		filterBar: 'flex justify-between',
 		filterTitle: 'font-bold',
 		filterSort: 'hover:bg-blue-300 w-full',
-		option: 'outline-none'
+		option: 'focus:outline-none appearance-none'
 	};
 </script>
 
