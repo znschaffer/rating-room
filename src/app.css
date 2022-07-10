@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: SF Mono;
+  src: url(SF-Mono-Light.otf);
+}
+
+@font-face {
+  font-family: SF Mono;
+  font-weight: bold;
+  src: url(SF-Mono-Semibold.otf);
+}
+
+.sfmono {
+  font-family: SF Mono, sans-serif;
+}
+

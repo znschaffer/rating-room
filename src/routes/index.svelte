@@ -1,19 +1,17 @@
 <script>
-	import { urlFor } from '$lib/sanityClient';
-	export let products;
-	export let ratings;
-	console.log(products);
+	import Grid from '$lib/Grid.svelte';
+	import { products, productsView, tags } from '$lib/stores';
+	export let data;
+	products.set(data.products);
+	tags.set(data.tags)
+
+	productsView.set(data.products);
 </script>
 
 <svelte:head>
 	<title>Rating Room</title>
 </svelte:head>
 
-<h1>Rating Room</h1>
-
-{#each products as product}
-	<p>{product.name}</p>
-	{#if product.image}
-		<img src={urlFor(product.image).width(200).url()} alt={product.name} />
-	{/if}
-{/each}
+<div >
+	<Grid products={$productsView} />
+</div>
