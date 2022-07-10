@@ -1,9 +1,11 @@
 <script>
 	import Grid from '$lib/Grid.svelte';
-	import { products, productsView } from '$lib/stores';
+	import { products, productsView, tags } from '$lib/stores';
 	export let data;
-	products.set(data);
-	productsView.set(data);
+	products.set(data.products);
+	tags.set(data.tags)
+
+	productsView.set(data.products);
 </script>
 
 <svelte:head>

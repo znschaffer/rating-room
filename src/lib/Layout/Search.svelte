@@ -1,19 +1,19 @@
 <script>
-  import { products, productsView } from '$lib/stores';
+	import { products, productsView } from '$lib/stores';
+	import normalize from '$helpers/normalize';
 
-  const normalize = (str) => str.toLowerCase().trim()
-  
-  
-  const searchProducts = (e) => {
-    productsView.set($products.filter((product) => normalize(product.name).includes(normalize(e.target.value))))
-  }
+	const searchProducts = (e) => {
+		productsView.set(
+			$products.filter((product) => normalize(product.name).includes(normalize(e.target.value)))
+		);
+	};
 
-  const {container, input} = {
-    container: 'h-28 m-2',
-    input: 'outline outline-1 w-36 focus:outline-blue-600 p-1'
-  }
+	const { container, input } = {
+		container: 'h-16 m-2',
+		input: 'outline outline-1 w-36 focus:outline-blue-600 p-1'
+	};
 </script>
 
 <div class={container}>
-  <input on:input={searchProducts} class={input} placeholder='search'/>
+	<input on:input={searchProducts} class={input} placeholder="search" />
 </div>

@@ -1,20 +1,15 @@
 <script>
 	import { productsView, currentProduct } from '$lib/stores';
 
-	const { options,option, productList, productStyle, productTitle } = {
-		options: 'flex gap-4 w-full text-xs',
-    option: 'hover:bg-blue-300 pl-2 w-1/2',
+	const { container, productStyle, productTitle } = {
     productList: 'flex flex-col items-start mt-10 text-sm',
-    productStyle: 'hover:bg-blue-300 w-full text-left',
-    productTitle: 'pl-2 '
+    productStyle: ' w-full text-left',
+    productTitle: 'pl-2 hover:bg-blue-300 '
 	};
 </script>
 
-<div class={options}>
-	<div class={option}>Filter</div>
-	<div class={option}>Sort</div>
-</div>
-<div class={productList}>
+
+<div class={container}>
 {#each $productsView as product}
 		<a 
       class={productStyle}
