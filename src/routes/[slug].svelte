@@ -11,15 +11,16 @@
 	tags.set(data.tags);
 	productsView.set(data.products);
 
-	let currProd = $products.find((product) => normalize(product.name) ===  parseSlug($page.params.slug))
+	let currProd = $products.find(
+		(product) => normalize(product.name) === parseSlug($page.params.slug)
+	);
 	if (currProd) currentProduct.set(currProd);
-
 </script>
 
 <div class="container">
 	{#if currProd}
-	<Feature product={$currentProduct} />
+		<Feature product={$currentProduct} />
 	{:else}
-	<NotFound/>
+		<NotFound />
 	{/if}
 </div>
