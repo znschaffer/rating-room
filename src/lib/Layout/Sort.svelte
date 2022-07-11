@@ -25,7 +25,7 @@
 				);
 				break;
 			case 'created':
-        console.log($productsView)
+				console.log($productsView);
 				productsView.set(
 					$productsView.sort((prev, curr) => {
 						if (current) return new Date(prev._createdAt) < new Date(curr._createdAt) ? -1 : 1;
@@ -37,8 +37,8 @@
 	};
 
 	const { container, sortBar, sortTitle } = {
-		container: 'pl-2 flex flex-col gap-4 w-full text-xs mb-6',
-		sortBar: 'flex justify-between',
+		container: 'flex flex-col text-sm h-auto mb-4 mr-6',
+		sortBar: 'pl-8 p-2 flex justify-between',
 		sortTitle: 'font-bold'
 	};
 </script>

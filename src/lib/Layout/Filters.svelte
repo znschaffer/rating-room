@@ -2,54 +2,48 @@
 	import { productsView, products, tags } from '$lib/stores';
 	import normalize from '$helpers/normalize';
 	import getAvgRating from '$helpers/getAvgRating';
-	let selectedCat;
-	let selectedRating;
+	export let filters;
+	export let reset;
+	let { selectedCat, selectedRating } = filters;
 
 	const stars = ['⭐ ⬆', '⭐⭐ ⬆', '⭐⭐⭐ ⬆', '⭐⭐⭐⭐ ⬆', '⭐⭐⭐⭐⭐ ⬆'];
 
-	const reset = () => {
-		productsView.set($products);
-		selectedCat = 0;
-		selectedRating = 0;
-	};
+	const filterByCat = (products, value) =>
+		products.filter((product) => {
+			if (product.tags) {
+				const selectedTagId = $tags.find((tag) => tag.name === value)._id;
+				const productTags = product.tags.map((tag) => tag._ref);
+				if (productTags.includes(selectedTagId)) return true;
+			} else return false;
+		});
+
+	const filterByRating = (products, value) =>
+		products.filter((product) => product.rating && getAvgRating(product.rating) >= Number(value));
 
 	const filter = ({ target: { name, value } }) => {
+		if (Number(value) === 0) {
+			reset();
+			return;
+		}
 		switch (normalize(name)) {
 			case 'rating':
-				if (!Number(value)) {
-					reset();
-					return;
-				}
-				productsView.set(
-					$products.filter(
-						(product) => product.rating && getAvgRating(product.rating) >= Number(value)
-					)
-				);
+				if (selectedCat)
+					productsView.set(filterByCat(filterByRating($products, value), selectedCat));
+				else productsView.set(filterByRating($products, value));
 				break;
 			case 'category':
-				if (Number(value) === 0) {
-					reset();
-					return;
-				}
-				productsView.set(
-					$products.filter((product) => {
-						if (product.tags) {
-							const selectedTagId = $tags.find((tag) => tag.name === value)._id;
-							const productTags = product.tags.map((tag) => tag._ref);
-							if (productTags.includes(selectedTagId)) return true;
-						} else return false;
-					})
-				);
+				if (selectedRating)
+					productsView.set(filterByRating(filterByCat($products, value), selectedRating));
+				else productsView.set(filterByCat($products, value));
 				break;
 		}
 	};
 
-	const { container, filterBar, filterTitle, filterStyle, option } = {
-		container: 'pl-2 flex flex-col gap-4 w-full text-xs mb-6',
-		filterBar: 'flex justify-between',
+	const { container, filterBar, filterTitle, filterSort } = {
+		container: 'flex flex-col text-sm h-auto mb-4 mr-6',
+		filterBar: 'pl-8 p-2 pr-2  flex justify-between',
 		filterTitle: 'font-bold',
-		filterSort: 'hover:bg-blue-300 w-full',
-		option: 'focus:outline-none appearance-none'
+		filterSort: 'p-1 pl-9  mr-12 hover:bg-blue-300 w-full focus:outline-none'
 	};
 </script>
 
@@ -59,16 +53,17 @@
 		<button on:click={reset}> ✖️ </button>
 	</div>
 
-	<select on:change={filter} class={filterStyle} name="category" bind:value={selectedCat}>
+	<select on:change={filter} class={filterSort} name="category" bind:value={selectedCat}>
 		<option select="selected" value={0}>Category</option>
-		{#each $tags as tag}
-			<option class={option} value={tag.name}>{tag.name}</option>
+		{#each $tags as tag (tag.name)}
+			<option value={tag.name}>{tag.name}</option>
 		{/each}
 	</select>
-	<select on:change={filter} class={filterStyle} name="rating" bind:value={selectedRating}>
+
+	<select on:change={filter} class={filterSort} name="rating" bind:value={selectedRating}>
 		<option select="selected" value={0}>Rating</option>
-		{#each stars as starValue, i}
-			<option class={option} value={i + 1}>{starValue}</option>
+		{#each stars as starValue, i (starValue)}
+			<option value={i + 1}>{starValue}</option>
 		{/each}
 	</select>
 </div>

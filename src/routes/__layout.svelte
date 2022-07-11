@@ -1,24 +1,41 @@
 <script>
 	import '../app.css';
-	import Products from '$lib/Layout/Products.svelte'
-	import Header from '$lib/Layout/Header.svelte'
-	import Search from '$lib/Layout/Search.svelte'
+	import { page } from '$app/stores';
+	import { products, productsView, currentProduct } from '$lib/stores';
+	import Products from '$lib/Layout/Products.svelte';
+	import Header from '$lib/Layout/Header.svelte';
+	import Search from '$lib/Layout/Search.svelte';
 	import Filters from '$lib/Layout/Filters.svelte';
 	import Sort from '$lib/Layout/Sort.svelte';
+	let filters = { selectedCat: 0, selectedRating: 0 };
 
-	const { main,  sidebar } = {
+	const reset = () => {
+		productsView.set($products);
+		filters = { selectedCat: 0, selectedRating: 0 };
+	};
+
+	const { main, sidebar } = {
 		main: 'flex w-screen h-screen sfmono',
-		sidebar: 'flex flex-col h-screen overflow-auto w-40 shrink-0'
+		sidebar: 'flex flex-col justify-start h-screen overflow-auto w-52 shrink-0'
 	};
 </script>
 
 <main class={main}>
 	<div class={sidebar}>
-		<Header />
-		<Search />
-		<Filters />
-		<Sort/>
-		<Products />
+		<Header {reset} />
+		{#if $page.url.pathname === '/'}
+			<Search />
+			<Filters bind:filters {reset} />
+			<Sort />
+		{:else}
+			<Products productsView={$productsView} {currentProduct} />
+		{/if}
 	</div>
 	<slot />
 </main>
+
+<style>
+	::-webkit-scrollbar {
+		display: none;
+	}
+</style>

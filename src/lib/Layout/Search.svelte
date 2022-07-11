@@ -9,8 +9,8 @@
 	};
 
 	const { container, input } = {
-		container: 'h-16 m-2',
-		input: 'outline outline-1 w-36 focus:outline-blue-600 p-1'
+		container: 'h-16 ml-auto mr-auto',
+		input: 'outline outline-1 w-36 focus:outline-blue-600 p-1 text-sm'
 	};
 </script>
 

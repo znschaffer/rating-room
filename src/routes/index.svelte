@@ -4,6 +4,7 @@
 	export let data;
 	products.set(data.products);
 	tags.set(data.tags);
+
 	productsView.set(data.products);
 </script>
 
