@@ -53,14 +53,14 @@
 		<button on:click={reset}> ✖️ </button>
 	</div>
 
-	<select on:change={filter} class={filterSort} name="category" bind:value={selectedCat}>
+	<select on:change={filter} class={filterSort} name="category" bind:value={filters.selectedCat}>
 		<option select="selected" value={0}>Category</option>
 		{#each $tags as tag (tag.name)}
 			<option value={tag.name}>{tag.name}</option>
 		{/each}
 	</select>
 
-	<select on:change={filter} class={filterSort} name="rating" bind:value={selectedRating}>
+	<select on:change={filter} class={filterSort} name="rating" bind:value={filters.selectedRating}>
 		<option select="selected" value={0}>Rating</option>
 		{#each stars as starValue, i (starValue)}
 			<option value={i + 1}>{starValue}</option>
