@@ -1,5 +1,5 @@
 <script>
-	import { urlFor } from './sanityClient';
+	import { urlFor } from '$lib/sanityClient';
 	export let product;
 </script>
 
