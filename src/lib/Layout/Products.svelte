@@ -16,7 +16,7 @@
 		<a class={productStyle} on:click={currentProduct.set(product)} href={parseName(product.name)}>
 			<p
 				class={`pl-12 hover:bg-blue-300 ${
-					$currentProduct.name === product.name ? 'bg-blue-300' : ''
+					$currentProduct && $currentProduct.name === product.name ? 'bg-blue-300' : ''
 				} text-sm`}
 			>
 				{product.name}

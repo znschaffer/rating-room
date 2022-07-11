@@ -1,9 +1,10 @@
 <script>
 	import Feature from '$lib/Feature.svelte';
 	import { productsView, currentProduct } from '$lib/stores';
+	import normalize from '$helpers/normalize';
 
 	let currentProductIndex = $productsView.findIndex(
-		(product) => product.name == $currentProduct.name
+		({name}) => normalize(name) === normalize($currentProduct.name)
 	);
 
 	function nextProduct() {

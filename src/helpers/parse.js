@@ -1,8 +1,9 @@
+import normalize from './normalize';
+
 export function parseSlug(slug) {
-    return slug.replaceAll("_", " ")
+    return normalize(slug).replaceAll("-", " ")
 }
 
-
 export function parseName(name) {
-    return name.replaceAll(" ","_")
+    return normalize(name).replaceAll(" ","-")
 }
