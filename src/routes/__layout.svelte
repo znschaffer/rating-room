@@ -7,13 +7,11 @@
 	import Search from '$lib/Layout/Search.svelte'
 	import Filters from '$lib/Layout/Filters.svelte';
 	import Sort from '$lib/Layout/Sort.svelte';
-	let selectedCat;
-	let selectedRating;
+	let filters = {selectedCat:0, selectedRating:0}
 
 	const reset = () => {
 		productsView.set($products);
-		selectedCat = 0;
-		selectedRating = 0;
+		filters = {selectedCat: 0, selectedRating: 0}
 	};
 
 	const { main,  sidebar } = {
@@ -33,7 +31,7 @@
 		<Header {reset} />
 		{#if $page.url.pathname === '/'}
 			<Search />
-			<Filters bind:selectedCat bind:selectedRating {reset} />
+			<Filters bind:filters {reset} />
 			<Sort/>
 		{:else}
 		<Products productsView={$productsView} currentProduct={currentProduct} />
