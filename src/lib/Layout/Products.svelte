@@ -1,6 +1,7 @@
 <script>
 	export let productsView;
 	export let currentProduct;
+	import { parseName } from '$helpers/parse';
 
 	const { container, productStyle, productTitle } = {
 		container: 'pt-4',
@@ -12,7 +13,7 @@
 
 <div class={container}>
 	{#each productsView as product}
-		<a class={productStyle} on:click={currentProduct.set(product)} href="/product">
+		<a class={productStyle} on:click={currentProduct.set(product)} href={parseName(product.name)}>
 			<p
 				class={`pl-12 hover:bg-blue-300 ${
 					$currentProduct.name === product.name ? 'bg-blue-300' : ''
