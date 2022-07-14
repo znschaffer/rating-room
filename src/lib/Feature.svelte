@@ -1,12 +1,12 @@
 <script>
 	import { urlFor } from '$lib/sanityClient';
-	export let product;
+	import { productsView, currentProduct } from '$lib/stores';
 </script>
 
 <div class="content">
-	<p>{product.name}</p>
-	{#if product.image}
-		<img src={urlFor(product.image).url()} alt={product.name} />
+	<p>{$currentProduct.name}</p>
+	{#if $currentProduct.image}
+		<img src={urlFor($currentProduct.image).url()} alt={$currentProduct.name} />
 	{/if}
 </div>
 

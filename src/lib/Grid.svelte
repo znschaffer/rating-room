@@ -1,35 +1,21 @@
 <script>
 	import { urlFor } from './sanityClient';
 	import { currentProduct } from '$lib/stores.js';
-	import { parseName } from '$helpers/parse.js';
+	import toProduct from '$helpers/toProduct';
 	export let products;
+
+	const {container} = {
+		container: 'flex flex-wrap m-12 justify-start',
+	}
 </script>
 
-<div class="content">
+
+<div class={container}>
 	{#each products as product}
-		<li class="product">
-			<a on:click={currentProduct.set(product)} href={parseName(product.name)}>
+			<button on:click={() => toProduct(product, currentProduct)} >
 				{#if product.image}
-					<img src={urlFor(product.image).width(125).height(125).url()} alt={product.name} />
+					<img src={urlFor(product.image).width(150).url()} alt={product.name} />
 				{/if}
-			</a>
-		</li>
+			</button>
 	{/each}
 </div>
-
-<style>
-	.content {
-		width: calc(100% - 160px);
-		margin-left: 160px;
-		float: left;
-		margin-top: 48px;
-		padding: 0 32px;
-	}
-	.product {
-		display: inline;
-		float: left;
-		width: 125px;
-		height: 125px;
-		padding: 0px;
-	}
-</style>
