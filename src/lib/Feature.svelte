@@ -1,6 +1,6 @@
 <script>
 	import { urlFor } from '$lib/sanityClient';
-	import { productsView, currentProduct } from '$lib/stores';
+	import { currentProduct } from '$lib/stores';
 </script>
 
 <div class="content">

@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import { page } from '$app/stores';
 	import { products, productsView, currentProduct } from '$lib/stores';
 	import Products from '$lib/Layout/Products.svelte';
 	import Header from '$lib/Layout/Header.svelte';

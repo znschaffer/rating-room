@@ -1,7 +1,7 @@
 <script>
 	import { urlFor } from './sanityClient';
 	import { currentProduct } from '$lib/stores.js';
-	import toProduct from '$helpers/toProduct';
+	import { toProduct } from '$helpers';
 	export let products;
 
 	const {container} = {

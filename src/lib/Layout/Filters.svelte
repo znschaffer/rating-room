@@ -1,7 +1,6 @@
 <script>
 	import { productsView, products, tags } from '$lib/stores';
-	import normalize from '$helpers/normalize';
-	import getAvgRating from '$helpers/getAvgRating';
+	import {normalize, getAvgRating } from '$helpers';
 	export let filters;
 	export let reset;
 	let { selectedCat, selectedRating } = filters;

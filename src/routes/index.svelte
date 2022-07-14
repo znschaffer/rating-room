@@ -3,8 +3,7 @@
 	import Feature from '$lib/Feature.svelte';
 	import { products, productsView, tags, currentProduct } from '$lib/stores';
 	import { browser } from '$app/env';
-	import normalize from '$helpers/normalize';
-	import { parseSlug } from '$helpers/parse';
+	import {normalize, parseSlug } from '$helpers';
 
 	export let data;
 	products.set(data.products);
@@ -31,7 +30,6 @@
 
 	if (browser) {
 		window.onpopstate = () => {
-			console.log('sttae poped')
 			goToProduct();
 		}
 	}

@@ -1,3 +1,2 @@
-const normalize = (str) => str.toLowerCase().trim()
+export const normalize = (str) => str.toLowerCase().trim()
 
-export default normalize;

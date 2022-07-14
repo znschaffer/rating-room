@@ -1,6 +1,6 @@
 <script>
 	import { products, productsView } from '$lib/stores';
-	import normalize from '$helpers/normalize';
+	import { normalize } from '$helpers';
 
 	const searchProducts = (e) => {
 		productsView.set(

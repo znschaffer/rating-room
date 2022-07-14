@@ -1,4 +1,4 @@
-import normalize from './normalize';
+import {normalize }from './normalize';
 
 export function parseSlug(slug) {
     return normalize(slug).replaceAll("-", " ")

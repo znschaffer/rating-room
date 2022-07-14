@@ -1,7 +1,7 @@
 <script>
 	export let productsView;
 	export let currentProduct;
-	import toProduct from '$helpers/toProduct';
+	import { toProduct } from '$helpers';
 
 	const { container, productStyle } = {
 		container: 'pt-4',
