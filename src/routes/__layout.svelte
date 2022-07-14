@@ -11,6 +11,9 @@
 
 	const reset = () => {
 		productsView.set($products);
+		const url = new URL(window.location);
+		window.history.pushState({}, '', url);
+		currentProduct.set({});
 		filters = { selectedCat: 0, selectedRating: 0 };
 	};
 
@@ -23,7 +26,7 @@
 <main class={main}>
 	<div class={sidebar}>
 		<Header {reset} />
-		{#if $page.url.pathname === '/'}
+		{#if !Object.keys($currentProduct).length}
 			<Search />
 			<Filters bind:filters {reset} />
 			<Sort />

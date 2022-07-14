@@ -1,19 +1,18 @@
 <script>
 	export let productsView;
 	export let currentProduct;
-	import { parseName } from '$helpers/parse';
+	import toProduct from '$helpers/toProduct';
 
-	const { container, productStyle, productTitle } = {
+	const { container, productStyle } = {
 		container: 'pt-4',
 		productList: 'flex flex-col items-start mt-10 text-sm',
-		productStyle: 'w-full text-left',
-		productTitle: 'pl-12 hover:bg-blue-300 text-sm'
+		productStyle: 'w-full text-left'
 	};
 </script>
 
 <div class={container}>
 	{#each productsView as product}
-		<a class={productStyle} on:click={currentProduct.set(product)} href={parseName(product.name)}>
+		<button class={productStyle} on:click={() => toProduct(product, currentProduct)}>
 			<p
 				class={`pl-12 hover:bg-blue-300 ${
 					$currentProduct && $currentProduct.name === product.name ? 'bg-blue-300' : ''
@@ -21,6 +20,6 @@
 			>
 				{product.name}
 			</p>
-		</a>
+		</button>
 	{/each}
 </div>
