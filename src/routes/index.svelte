@@ -1,2 +1,53 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Grid from '$lib/Grid.svelte';
+	import Feature from '$lib/Feature/Feature.svelte';
+	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
+	import { browser } from '$app/env';
+	import {normalize, parseSlug } from '$helpers';
+
+	export let data;
+	products.set(data.products);
+	tags.set(data.tags);
+	emotions.set(data.emotions)
+
+	productsView.set(data.products);
+	const goToProduct = () => {
+		const params = new URLSearchParams(window.location.search);
+		const paramProd = params.get('product');
+
+		if (paramProd) {
+			const foundProduct = $products.find(
+				({ name }) => normalize(name) === normalize(parseSlug(paramProd))
+			);
+			if (foundProduct) {
+				currentProduct.set(foundProduct);
+			}
+		} else {
+			const url = new URL(window.location.origin);
+			history.pushState({}, '', url);
+			currentProduct.set({});
+		}
+	};
+
+	if (browser) {
+		window.onpopstate = () => {
+			goToProduct();
+		}
+	}
+
+	const { container} = {
+		container: 'h-screen overflow-auto'
+	}
+</script>
+
+<svelte:head>
+	<title>Rating Room</title>
+</svelte:head>
+
+<div class={container}>
+	{#if Object.keys($currentProduct).length}
+		<Feature />
+	{:else}
+		<Grid products={$productsView} />
+	{/if}
+</div>
