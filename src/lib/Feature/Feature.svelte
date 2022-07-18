@@ -5,13 +5,13 @@
 	console.log($currentProduct);
 
 	const { container, name, description, productInfo, date, tags, img } = {
-		container: 'flex m-8 gap-8',
+		container: 'flex m-16 gap-12',
 		productInfo: 'flex flex-col gap-2',
 		name: 'font-bold text-2xl',
 		description: '',
-		date: 'text-xs w-2/3',
+		date: 'text-xs w-2/3 mt-auto mb-4',
 		tags: 'flex gap-1',
-		img: 'm-8'
+		img: 'p-8 border  border-black border-2 p-3'
 	};
 </script>
 
@@ -28,7 +28,7 @@
 		<p class={name}>{$currentProduct.name}</p>
 		{#if $currentProduct.tags}
 			<div class={tags}>
-				{#each $currentProduct.tags as tag}
+				{#each $currentProduct.tags as tag (tag._ref)}
 					<Tag {tag} />
 				{/each}
 			</div>
