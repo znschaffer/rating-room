@@ -1,6 +1,6 @@
 <script>
 	import Grid from '$lib/Grid.svelte';
-	import Feature from '$lib/Feature.svelte';
+	import Feature from '$lib/Feature/Feature.svelte';
 	import { products, productsView, tags, currentProduct } from '$lib/stores';
 	import { browser } from '$app/env';
 	import {normalize, parseSlug } from '$helpers';
