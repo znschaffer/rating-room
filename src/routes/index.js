@@ -3,9 +3,11 @@ import { client } from '$lib/sanityClient';
 export async function get() {
 	const products = await client.fetch('*[_type == "product"]');
 	const tags = await client.fetch('*[_type == "tag"]');
+	const emotions = await client.fetch('*[_type == "emotion"]');
+
 
 	const data = {
-		products,tags
+		products,tags,emotions
 	}
 
 	if (data) {
