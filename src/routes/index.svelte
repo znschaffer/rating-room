@@ -30,6 +30,7 @@
 	};
 
 	if (browser) {
+		goToProduct();
 		window.onpopstate = () => {
 			goToProduct();
 		}
