@@ -1,7 +1,6 @@
 <script>
 	export let rating;
 	import { emotions } from '$lib/stores';
-	console.log(rating.rating);
 	let foundEmotion;
 
 	if (rating.emotion) {
