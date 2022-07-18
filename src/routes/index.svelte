@@ -1,13 +1,14 @@
 <script>
 	import Grid from '$lib/Grid.svelte';
-	import Feature from '$lib/Feature.svelte';
-	import { products, productsView, tags, currentProduct } from '$lib/stores';
+	import Feature from '$lib/Feature/Feature.svelte';
+	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
 	import { browser } from '$app/env';
 	import {normalize, parseSlug } from '$helpers';
 
 	export let data;
 	products.set(data.products);
 	tags.set(data.tags);
+	emotions.set(data.emotions)
 
 	productsView.set(data.products);
 	const goToProduct = () => {
