@@ -24,7 +24,6 @@
 				);
 				break;
 			case 'created':
-				console.log($productsView);
 				productsView.set(
 					$productsView.sort((prev, curr) => {
 						if (current) return new Date(prev._createdAt) < new Date(curr._createdAt) ? -1 : 1;

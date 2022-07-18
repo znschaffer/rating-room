@@ -33,13 +33,17 @@
 			goToProduct();
 		}
 	}
+
+	const { container} = {
+		container: 'h-screen overflow-auto'
+	}
 </script>
 
 <svelte:head>
 	<title>Rating Room</title>
 </svelte:head>
 
-<div>
+<div class={container}>
 	{#if Object.keys($currentProduct).length}
 		<Feature />
 	{:else}
