@@ -30,13 +30,14 @@
 	};
 
 	if (browser) {
+		goToProduct();
 		window.onpopstate = () => {
 			goToProduct();
 		}
 	}
 
 	const { container} = {
-		container: 'h-screen overflow-auto'
+		container: 'h-screen overflow-auto w-screen'
 	}
 </script>
 

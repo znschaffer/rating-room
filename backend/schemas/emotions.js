@@ -1,3 +1,26 @@
+import client from 'part:@sanity/base/client';
+import groq from 'groq';
+
+const isUniqueEmotion = (emotion, context) => {
+	const { document } = context;
+
+	const id = document._id.replace(/^drafts\./, '');
+
+	const params = {
+		draft: `drafts.${id}`,
+		published: id,
+		emotion
+	};
+	/* groq */
+	const query = groq`!defined(*[
+    _type == 'emotion' &&
+    !(_id in [$draft, $published]) &&
+    name == $emotion
+  ][0]._id)`;
+
+	return client.fetch(query, params);
+};
+
 export default {
 	title: 'Emotions',
 	name: 'emotion',
@@ -7,28 +30,29 @@ export default {
 		{
 			title: 'Emotion name',
 			name: 'name',
-			type: 'string'
+			type: 'string',
+			validation: (Rule) =>
+				Rule.custom(async (value, context) => {
+					const isUnique = await isUniqueEmotion(value, context);
+					if (!isUnique) return 'Emotion is not unique';
+					return true;
+				})
 		},
-    {
-      title: 'Description',
-      name: 'description',
-      type: 'text'
-    },
-    {
-      title: 'Zane image',
-      name: 'zane',
-      type: 'image'
-    },
-    {
-      title: 'Xinrui image',
-      name: 'xyn',
-      type: 'image'
-    },
+		{
+			title: 'Description',
+			name: 'description',
+			type: 'text'
+		},
+		{
+			title: 'Emotion Image',
+			name: 'image',
+			type: 'image'
+		}
 	],
-  preview: {
-    select: {
-      title: 'name',
-      subtitle: 'description'
-    }
-  }
+	preview: {
+		select: {
+			title: 'name',
+			subtitle: 'description'
+		}
+	}
 };
