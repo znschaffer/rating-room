@@ -13,7 +13,7 @@ import Rating from './Rating/Rating.svelte';
 		description: '',
 		date: 'text-xs w-2/3 mt-auto mb-4',
 		tags: 'flex gap-1',
-		img: 'p-8 border  border-black border-2 p-3',
+		img: 'p-8 border flex-shrink-0 w-72 h-72 border-black border-2 p-3',
 		ratings: ''
 	}
 </script>
@@ -24,7 +24,6 @@ import Rating from './Rating/Rating.svelte';
 		<img
 			src={urlFor($currentProduct.image).url()}
 			class={img}
-			width={300}
 			alt={$currentProduct.name}
 		/>
 	{/if}
