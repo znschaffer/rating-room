@@ -9,26 +9,21 @@ export default {
 			name: 'name',
 			type: 'string'
 		},
-    {
-      title: 'Description',
-      name: 'description',
-      type: 'text'
-    },
-    {
-      title: 'Zane image',
-      name: 'zane',
-      type: 'image'
-    },
-    {
-      title: 'Xinrui image',
-      name: 'xyn',
-      type: 'image'
-    },
+		{
+			title: 'Description',
+			name: 'description',
+			type: 'text'
+		},
+		{
+			title: 'Emotion Image',
+			name: 'image',
+			type: 'image'
+		}
 	],
-  preview: {
-    select: {
-      title: 'name',
-      subtitle: 'description'
-    }
-  }
+	preview: {
+		select: {
+			title: 'name',
+			subtitle: 'description'
+		}
+	}
 };
