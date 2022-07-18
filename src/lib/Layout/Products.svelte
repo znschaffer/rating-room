@@ -14,7 +14,7 @@
 	{#each productsView as product}
 		<button class={productStyle} on:click={() => toProduct(product, currentProduct)}>
 			<p
-				class={`pl-12 hover:bg-blue-300 ${
+				class={`pl-12 hover:bg-gray-200 ${
 					$currentProduct && $currentProduct.name === product.name ? 'bg-blue-300' : ''
 				} text-sm`}
 			>
