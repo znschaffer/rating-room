@@ -45,6 +45,7 @@
 			{/each}
 		</div>
 	{/if}
+	<PrevNext />
 </div>
 
 <style>
