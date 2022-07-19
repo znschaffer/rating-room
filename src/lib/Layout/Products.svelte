@@ -6,7 +6,7 @@
 	const { container, productStyle } = {
 		container: 'pt-4',
 		productList: 'flex flex-col items-start mt-10 text-sm',
-		productStyle: 'w-full text-left'
+		productStyle: 'w-full text-left snap-start snap-always'
 	};
 </script>
 

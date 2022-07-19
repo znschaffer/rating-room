@@ -3,7 +3,7 @@
 	import Feature from '$lib/Feature/Feature.svelte';
 	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
 	import { browser } from '$app/env';
-	import {normalize, parseSlug } from '$helpers';
+	import { normalize, parseSlug } from '$helpers';
 
 	export let data;
 	products.set(data.products);
