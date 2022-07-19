@@ -1,10 +1,10 @@
 <script>
-	import { currentProduct, products } from '$lib/stores'; 
+	import { currentProduct, productsView } from '$lib/stores'; 
   import { toProduct } from '$helpers';
 
-  $: foundIndex =  $products.findIndex((prod) => prod._id === $currentProduct._id)
-  $: PREV = $products[foundIndex-1];
-  $: NEXT = $products[foundIndex+1];
+  $: foundIndex =  $productsView.findIndex((prod) => prod._id === $currentProduct._id)
+  $: PREV = $productsView[foundIndex-1];
+  $: NEXT = $productsView[foundIndex+1];
 
   const navigate = (e) => {
     if (e.target.name === 'prev' && PREV) {
