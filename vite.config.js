@@ -30,6 +30,7 @@ const config = {
 		coverage: {
 			exclude: ['setupTest.js', 'src/mocks']
 		},
+		setupFiles: ['./setupTest.js'],
 		deps: {
 			// Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
 		},
