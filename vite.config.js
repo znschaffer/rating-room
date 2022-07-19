@@ -15,8 +15,6 @@ const config = {
 			allow: ['backend']
 		}
 	}
-	
-
 };
 
 export default config;
