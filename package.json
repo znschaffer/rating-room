@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@mui/icons-material": "^5.8.4",
 		"@sanity/client": "^3.3.2",
 		"@sanity/image-url": "^1.0.1",
 		"@sanity/types": "^2.29.5"
