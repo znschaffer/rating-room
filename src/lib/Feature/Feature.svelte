@@ -2,6 +2,7 @@
 	import { urlFor } from '$lib/sanityClient';
 	import { currentProduct } from '$lib/stores';
 	import Rating from './Rating/Rating.svelte';
+	import PrevNext from './PrevNext/PrevNext.svelte';
 	import Tag from './Tag/Tag.svelte';
 
 	const { container, imageView, name, description, productInfo, date, tags, img, ratings } = {
@@ -44,6 +45,7 @@
 			{/each}
 		</div>
 	{/if}
+	<PrevNext />
 </div>
 
 <style>
