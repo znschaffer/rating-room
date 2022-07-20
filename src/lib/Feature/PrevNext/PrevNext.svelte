@@ -26,7 +26,7 @@
   <button on:click={navigate} class={btn} name={'prev'}
 		><svg focusable="false" width={50} height={50} viewBox="0 0 24 24">
 			<path d="m14 7-5 5 5 5V7z" />
-		</svg>{PREV.name}</button
+		</svg><span class='text-left'>{PREV.name}</span></button
 	>
   {:else}
   <div></div>
@@ -34,7 +34,7 @@
 
   {#if NEXT}
 	<button on:click={navigate} class={btn} name={'next'}
-  	>{NEXT.name}<svg focusable="false" width={50} height={50} viewBox="0 0 24 24"
+  	><span class='text-right'>{NEXT.name}</span><svg focusable="false" width={50} height={50} viewBox="0 0 24 24"
 			><path d="m10 17 5-5-5-5v10z" /></svg
 		></button
 	>
