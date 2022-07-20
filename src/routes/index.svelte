@@ -12,8 +12,7 @@
 
 	productsView.set(data.products);
 	const goToProduct = () => {
-		const params = new URLSearchParams(window.location.search);
-		const paramProd = params.get('product');
+		const paramProd = (new URLSearchParams(window.location.search)).get('product');
 
 		if (paramProd) {
 			const foundProduct = $products.find(
