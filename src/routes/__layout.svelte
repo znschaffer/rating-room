@@ -1,19 +1,18 @@
 <script>
 	import '../app.css';
-	import { products, productsView, currentProduct } from '$lib/stores';
+	import { products, productsView, currentProduct, filters } from '$lib/stores';
+	import { defaultFilter, resetParams } from '$helpers';
 	import Products from '$lib/Layout/Products.svelte';
 	import Header from '$lib/Layout/Header.svelte';
 	import Search from '$lib/Layout/Search.svelte';
 	import Filters from '$lib/Layout/Filters.svelte';
 	import Sort from '$lib/Layout/Sort.svelte';
-	let filters = { selectedCat: 0, selectedRating: 0 };
 
 	const reset = () => {
 		productsView.set($products);
-		const url = new URL(window.location);
-		window.history.pushState({}, '', url);
+		resetParams();
 		currentProduct.set({});
-		filters = { selectedCat: 0, selectedRating: 0 };
+		filters.set(structuredClone(defaultFilter));
 	};
 
 	const { main, container, sidebar } = {
@@ -29,10 +28,10 @@
 		<div class={sidebar}>
 			<Search />
 			{#if !Object.keys($currentProduct).length}
-			<Filters bind:filters {reset} />
+			<Filters {reset} />
 			<Sort />
 			{:else}
-			<Products productsView={$productsView} {currentProduct} />
+			<Products productsView={$productsView} {currentProduct}/>
 			{/if}
 		</div>
 	</div>
