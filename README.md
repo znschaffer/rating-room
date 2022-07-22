@@ -20,11 +20,6 @@ Testing: Unit tests run in `Jest`, integration tests run in `Playwright`.
 
 ## Functionality
 
-Home Page and Product View   
+Click through products to view details, with descriptions and ratings. Live filtering, sorting, and searching is implemented in the side bar.  
+
 ![home](static/home.gif) 
-
-Live Product Searching   
-![search](static/searchRecord.gif)
-Filtering/Sorting  
-![filter/sort](static/filterSortRecord.gif)
-
