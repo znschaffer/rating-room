@@ -7,7 +7,8 @@ const config = {
 	resolve: {
 		alias: {
 			$lib: resolve('./src/lib'),
-			$helpers: resolve('./src/helpers')
+			$helpers: resolve('./src/helpers'),
+			$types: resolve('./src/types')
 		}
 	},
 	server: {
