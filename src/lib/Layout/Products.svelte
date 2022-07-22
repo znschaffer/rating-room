@@ -6,7 +6,7 @@
 	const { container, productStyle } = {
 		container: 'pt-4',
 		productList: 'flex flex-col items-start mt-10 text-sm',
-		productStyle: 'w-full text-left'
+		productStyle: 'w-full text-left snap-start snap-always'
 	};
 </script>
 
@@ -14,7 +14,7 @@
 	{#each productsView as product}
 		<button class={productStyle} on:click={() => toProduct(product, currentProduct)}>
 			<p
-				class={`pl-12 hover:bg-gray-200 ${
+				class={`pl-10 hover:bg-gray-200 ${
 					$currentProduct && $currentProduct.name === product.name ? 'bg-blue-300' : ''
 				} text-sm`}
 			>

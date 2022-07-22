@@ -39,7 +39,7 @@
 	};
 
 	const { container, filterBar, filterTitle, filterSort } = {
-		container: 'flex flex-col text-sm h-auto mb-4 mr-6',
+		container: 'flex flex-col text-sm h-auto mb-4 mr-6 mt-4',
 		filterBar: 'pl-8 p-2 pr-2  flex justify-between',
 		filterTitle: 'font-bold',
 		filterSort: 'p-1 pl-9  mr-12 hover:bg-blue-300 w-full focus:outline-none'

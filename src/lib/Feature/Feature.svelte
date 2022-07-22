@@ -2,6 +2,7 @@
 	import { urlFor } from '$lib/sanityClient';
 	import { currentProduct } from '$lib/stores';
 	import Rating from './Rating/Rating.svelte';
+	import PrevNext from './PrevNext/PrevNext.svelte';
 	import Tag from './Tag/Tag.svelte';
 
 	const { container, imageView, name, description, productInfo, date, tags, img, ratings } = {
@@ -9,7 +10,7 @@
 		imageView: 'flex m-16 gap-12 w-100',
 		productInfo: 'flex flex-col gap-2',
 		name: 'font-bold text-2xl',
-		description: '',
+		description: 'leading-5',
 		date: 'text-xs w-2/3 mt-auto mb-4',
 		tags: 'flex gap-1',
 		img: 'p-8 border w-72 h-72 min-w-36 min-h-36  border-black border-2 p-3',
@@ -44,6 +45,7 @@
 			{/each}
 		</div>
 	{/if}
+	<PrevNext />
 </div>
 
 <style>

@@ -4,7 +4,7 @@ import { configDefaults } from 'vitest/config';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit()],
+	plugins: [sveltekit()],	
 	resolve: {
 		alias: {
 			$lib: resolve('./src/lib'),

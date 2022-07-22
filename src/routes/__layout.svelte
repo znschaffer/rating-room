@@ -16,22 +16,25 @@
 		filters = { selectedCat: 0, selectedRating: 0 };
 	};
 
-	const { main, sidebar } = {
+	const { main, container, sidebar } = {
 		main: 'flex w-screen h-screen sfmono',
-		sidebar: 'flex flex-col justify-start h-screen overflow-auto w-52 shrink-0'
+		container: 'flex flex-col h-screen justify-start shrink-0 overflow-auto w-56',
+		sidebar: ' flex flex-col shrink-0'
 	};
 </script>
 
 <main class={main}>
-	<div class={sidebar}>
+	<div class={container}>
 		<Header {reset} />
-		{#if !Object.keys($currentProduct).length}
+		<div class={sidebar}>
 			<Search />
+			{#if !Object.keys($currentProduct).length}
 			<Filters bind:filters {reset} />
 			<Sort />
-		{:else}
+			{:else}
 			<Products productsView={$productsView} {currentProduct} />
-		{/if}
+			{/if}
+		</div>
 	</div>
 	<slot />
 </main>
