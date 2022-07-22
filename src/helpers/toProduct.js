@@ -1,15 +1,4 @@
-import { parseName, parseSlug, normalize } from './';
-
-/**
- * Updates a url with search parameters to match product name of product passed in.
- * @param {URL} url a URL object
- * @param {object} product
- * @returns {URL} a URL object with search parameters appended.
- */
-const setUrlParam = (url, product) => {
-	url.searchParams.set('product', parseName(product.name));
-	return url;
-};
+import { parseSlug, normalize, setUrlParam, resetParams } from './';
 
 /**
  * Updates Window URL and checks that it is equal to product name
@@ -31,5 +20,5 @@ const didWinUrlUpdate = (url, product) => {
  * @param {store} currentProduct currentProduct store
  */
 export const toProduct = (product, currentProduct) =>
-	didWinUrlUpdate(setUrlParam(new URL(window.location), product), product) &&
-	currentProduct.set(product)
+	didWinUrlUpdate(setUrlParam(new URL(window.location), product), product)?
+	currentProduct.set(product): resetParams()

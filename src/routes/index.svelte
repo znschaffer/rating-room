@@ -1,43 +1,32 @@
 <script>
+	import { browser } from '$app/env';
 	import Grid from '$lib/Grid.svelte';
 	import Feature from '$lib/Feature/Feature.svelte';
 	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
-	import { browser } from '$app/env';
-	import { normalize, parseSlug } from '$helpers';
+	import { findProdFromParam, getProdParam, resetParams } from '$helpers';
 
 	export let data;
+
 	products.set(data.products);
-	tags.set(data.tags);
-	emotions.set(data.emotions)
-
 	productsView.set(data.products);
-	const goToProduct = () => {
-		const paramProd = (new URLSearchParams(window.location.search)).get('product');
+	tags.set(data.tags);
+	emotions.set(data.emotions);
 
-		if (paramProd) {
-			const foundProduct = $products.find(
-				({ name }) => normalize(name) === normalize(parseSlug(paramProd))
-			);
-			if (foundProduct) {
-				currentProduct.set(foundProduct);
-			}
-		} else {
-			const url = new URL(window.location.origin);
-			history.pushState({}, '', url);
-			currentProduct.set({});
-		}
+	const load = () => {
+		currentProduct.set(findProdFromParam(getProdParam(), $products));
+		if (getProdParam() && JSON.stringify($currentProduct) === '{}') resetParams();
 	};
 
 	if (browser) {
-		goToProduct();
+		load();
 		window.onpopstate = () => {
-			goToProduct();
-		}
+			load();
+		};
 	}
 
-	const { container} = {
+	const { container } = {
 		container: 'h-screen overflow-auto w-screen'
-	}
+	};
 </script>
 
 <svelte:head>
