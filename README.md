@@ -20,10 +20,11 @@ Testing: Unit tests run in `Jest`, integration tests run in `Playwright`.
 
 ## Functionality
 
-Home Page and Product View
-![home](static/home.gif)
-Live Product Searching
+Home Page and Product View   
+![home](static/home.gif) 
+
+Live Product Searching   
 ![search](static/searchRecord.gif)
-Filtering/Sorting
+Filtering/Sorting  
 ![filter/sort](static/filterSortRecord.gif)
 
