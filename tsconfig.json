@@ -2,8 +2,12 @@
 	"extends": "./.svelte-kit/tsconfig.json",
 
 	"compilerOptions": {
+		"strict": false,
 		"paths": {
-			"$helpers/*": ["src/helpers/*"]
+			"$lib":["src/lib"],
+			"$lib/*":["src/lib/*"],
+			"$helpers/*": ["src/helpers/*"],
+			"$types": ["src/types"]
 		}
 	}
 }
