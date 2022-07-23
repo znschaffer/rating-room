@@ -1,6 +1,6 @@
 <script>
 	import { urlFor } from './sanityClient';
-	import { currentProduct } from '$lib/stores.js';
+	import { currentProduct } from '$lib/stores';
 	import { toProduct } from '$helpers';
 	export let products;
 
