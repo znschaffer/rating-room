@@ -12,8 +12,6 @@
 	tags.set(data.tags);
 	emotions.set(data.emotions);
 
-	console.log($products)
-
 	const load = () => {
 		currentProduct.set(findProdFromParam(getProdParam(), $products));
 		if (getProdParam() && JSON.stringify($currentProduct) === '{}') resetParams();
