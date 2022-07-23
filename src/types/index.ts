@@ -9,6 +9,20 @@ export interface Rating {
   "rating"?: number
 }
 
+export interface Tag {
+  "_createdAt": string,
+  "_id": string,
+  "_rev": string,
+  "_type": "tag",
+  "_updatedAt": string,
+  "name": string
+}
+
+export interface Ref {
+  "_key": string
+  "_ref": string
+  "_type": "reference"|"tag"
+}
 export interface Product {
   "_createdAt": string,
   "_id": string,
@@ -24,6 +38,7 @@ export interface Product {
     }
   },
   "name": string,
-  "rating"?: Rating[]
+  "rating"?: Ref[],
+  "tags"?: Ref[]
 }
 

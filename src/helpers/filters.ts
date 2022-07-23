@@ -1,9 +1,9 @@
-import { getAvgRating } from './'
+import { getAvgRating } from '.'
+import type { Product, Tag } from '$types'
 
 export const defaultFilter = { selectedCat: 0, selectedRating: 0 }
 
-
-export const filterByCat = ($products, value, $tags) =>
+export const filterByCat = ($products:Product[], value:string, $tags:Tag[]) =>
 $products.filter((product) => {
   if (product.tags) {
     const selectedTagId = $tags.find((tag) => tag.name === value)._id;
@@ -12,5 +12,5 @@ $products.filter((product) => {
   } else return false;
 });
 
-export const filterByRating = (products, value) => products.filter((product) => product.rating && getAvgRating(product.rating) >= Number(value));
+export const filterByRating = (products:Product[], value:string) => products.filter((product) => product.rating && getAvgRating(product.rating) >= Number(value));
 
