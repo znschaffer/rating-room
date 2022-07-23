@@ -1,11 +1,18 @@
 import { client } from '$lib/sanityClient';
-/** @type {import('@sveltejs/kit').RequestHandler} */
+import type { Product, Tag, Emotion } from '$types';
+
+type dataType = {
+	products: Product[],
+	tags: Tag[],
+	emotions: Emotion[]
+}
+
 export async function GET() {
 	const products = await client.fetch('*[_type == "product"]');
 	const tags = await client.fetch('*[_type == "tag"]');
 	const emotions = await client.fetch('*[_type == "emotion"]');
 
-	const data = {
+	const data:dataType = {
 		products,
 		tags,
 		emotions
