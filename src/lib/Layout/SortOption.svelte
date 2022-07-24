@@ -4,7 +4,7 @@
 	let current = true;
 
 	const { sortOption, noPointer } = {
-		sortOption: 'flex p-1 pl-9  mr-12 hover:bg-blue-300 w-full flex justify-between',
+		sortOption: 'flex p-1 pl-9 mr-12 w-full flex justify-between',
 		noPointer: 'pointer-events-none'
 	};
 </script>
@@ -20,3 +20,14 @@
 	<p class={noPointer}>{option}</p>
 	<p class={noPointer}>{current ? '▲' : '▼'}</p>
 </button>
+
+<style>
+	@keyframes shake {
+  from {background-image:url('dither.png')}
+  to {background-image:url('dither2.png')}
+}
+	button:hover {
+		background-blend-mode: color dodge;
+		animation: shake 0.4s infinite;
+	}
+</style>
