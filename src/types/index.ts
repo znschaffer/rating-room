@@ -48,4 +48,6 @@ export interface Product {
 	name: string;
 	rating?: Ref[];
 	tags?: Ref[];
+	url?: string;
+	subname?: string;
 }
