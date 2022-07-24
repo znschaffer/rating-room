@@ -16,14 +16,14 @@
 	};
 
 	const { container, btn } = {
-		container: 'flex justify-between m-16 mt-2 mb-6 h-12  ',
-		btn: 'flex items-center gap-4'
+		container: 'flex justify-between m-16 mt-2 mb-6 h-12',
+		btn: 'flex items-center justify-end'
 	};
 </script>
 
 <div class={container}>
 	{#if PREV}
-		<button on:click={navigate} class={btn} name={'prev'}
+		<button on:click={navigate} class={`${btn} pr-4`} name='prev'
 			><svg focusable="false" width={50} height={50} viewBox="0 0 24 24">
 				<path d="m14 7-5 5 5 5V7z" />
 			</svg><span class="text-left">{PREV.name}</span></button
@@ -33,7 +33,7 @@
 	{/if}
 
 	{#if NEXT}
-		<button on:click={navigate} class={btn} name={'next'}
+		<button on:click={navigate} class={`${btn} pl-4`} name='next'
 			><span class="text-right">{NEXT.name}</span><svg
 				focusable="false"
 				width={50}
@@ -51,5 +51,10 @@
 	path,
 	span {
 		pointer-events: none;
+	}
+
+	button:hover {
+		background-image: url('dither.gif');
+    background-repeat: repeat;
 	}
 </style>
