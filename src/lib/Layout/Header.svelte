@@ -8,12 +8,9 @@
 <a href="/" class={title} on:click={reset}> Rating Room </a>
 
 <style>
-		@keyframes shake {
-  from {background-image:url('dither.png')}
-  to {background-image:url('dither2.png')}
-}
+
 	a:hover {
-		background-blend-mode: color dodge;
-		animation: shake 0.4s infinite;
+		background-image: url('dither.gif');
+		background-repeat: repeat;
 	}
 </style>
