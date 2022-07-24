@@ -17,3 +17,7 @@
   font-family: SF Mono, sans-serif;
 }
 
+.dither {
+  background-image: url('dither.gif');
+  background-repeat: repeat;
+}
