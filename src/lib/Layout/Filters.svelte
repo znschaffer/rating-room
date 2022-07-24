@@ -39,7 +39,7 @@
 		<button on:click={reset}> ✖️ </button>
 	</div>
 
-	<select on:change={filter} class={`p-1 pl-9  mr-12 hover:bg-blue-300 w-full focus:outline-none ${$filters.selectedCat? 'bg-blue-300':''}`}
+	<select on:change={filter} class={`p-1 pl-9  mr-12 w-full focus:outline-none ${$filters.selectedCat? 'dither':''}`}
 	name="category" bind:value={$filters.selectedCat}>
 		<option select="selected" value={0}>Category</option>
 		{#each $tags as tag (tag.name)}
@@ -47,7 +47,7 @@
 		{/each}
 	</select>
 
-	<select on:change={filter} class={`p-1 pl-9  mr-12 hover:bg-blue-300 w-full focus:outline-none ${$filters.selectedRating? 'bg-blue-300':''}`}
+	<select on:change={filter} class={`p-1 pl-9  mr-12 w-full focus:outline-none ${$filters.selectedRating? 'dither':''}`}
 	 name="rating" bind:value={$filters.selectedRating}>
 		<option select="selected" value={0}>Rating</option>
 		{#each stars as starValue, i (starValue)}
@@ -55,3 +55,19 @@
 		{/each}
 	</select>
 </div>
+
+<style>
+	@keyframes shake {
+  from {background-image:url('dither.png')}
+  to {background-image:url('dither2.png')}
+}
+	select:hover {
+		background-blend-mode: color dodge;
+		animation: shake 0.4s infinite;
+	}
+
+	.dither {
+		background-blend-mode: color dodge;
+		animation: shake 0.4s infinite;
+	}
+</style>

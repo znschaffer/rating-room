@@ -14,8 +14,20 @@
 	{#each products as product}
 			<button on:click={() => toProduct(product, currentProduct)} >
 				{#if product.image}
-					<img src={urlFor(product.image).width(150).url()} alt={product.name} />
+					<img src={urlFor(product.image).width(150).url()} alt={product.name}/>
 				{/if}
 			</button>
 	{/each}
 </div>
+
+
+<style>
+	@keyframes shake {
+  from {background-image:url('dither.png')}
+  to {background-image:url('dither2.png')}
+}
+	img:hover {
+		background-blend-mode: color dodge;
+		animation: shake 0.4s infinite;
+	}
+</style>

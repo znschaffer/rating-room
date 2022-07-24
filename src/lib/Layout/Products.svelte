@@ -15,7 +15,7 @@
 		<button class={productStyle} on:click={() => toProduct(product, currentProduct)}>
 			<p
 				class={`pl-10 hover:bg-gray-200 ${
-					$currentProduct && $currentProduct.name === product.name ? 'bg-blue-300' : ''
+					$currentProduct && $currentProduct.name === product.name ? 'dither' : ''
 				} text-sm`}
 			>
 				{product.name}
@@ -23,3 +23,14 @@
 		</button>
 	{/each}
 </div>
+
+<style>
+		@keyframes shake {
+  from {background-image:url('dither.png')}
+  to {background-image:url('dither2.png')}
+}
+	.dither {
+		background-blend-mode: color dodge;
+		animation: shake 0.4s infinite;
+	}
+</style>
