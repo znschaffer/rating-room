@@ -2,10 +2,12 @@
 	"extends": "./.svelte-kit/tsconfig.json",
 
 	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
 		"strict": false,
 		"paths": {
-			"$lib":["src/lib"],
-			"$lib/*":["src/lib/*"],
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"],
 			"$helpers/*": ["src/helpers/*"],
 			"$types": ["src/types"]
 		}

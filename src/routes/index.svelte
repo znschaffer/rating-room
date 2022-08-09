@@ -5,12 +5,7 @@
 	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
 	import { findProdFromParam, getProdParam, resetParams } from '$helpers';
 
-	export let data;
-
-	products.set(data.products);
-	productsView.set(data.products);
-	tags.set(data.tags);
-	emotions.set(data.emotions);
+	productsView.set($products);
 
 	const load = () => {
 		currentProduct.set(findProdFromParam(getProdParam(), $products));
