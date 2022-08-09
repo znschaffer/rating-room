@@ -1,10 +1,24 @@
 import type { Tag, Product, Emotion } from '$types';
-import { writable, type Writable } from 'svelte/store';
+import { writable, type Writable, readable, type Readable } from 'svelte/store';
+import { client } from '$lib/sanityClient';
 
-export const products: Writable<Product[]|[]> = writable([]);
-export const emotions: Writable<Emotion[]|[]> = writable([]);
-export const tags: Writable<Tag[]|[]> = writable([]);
+async function fetchProductData(): Promise<Product[]> {
+	const products: Product[] = await client.fetch('*[_type == "product"]');
+	return products;
+}
+async function fetchEmotionData(): Promise<Emotion[]> {
+	const emotions: Emotion[] = await client.fetch('*[_type == "emotion"]');
+	return emotions;
+}
+async function fetchTagData(): Promise<Tag[]> {
+	const tags: Tag[] = await client.fetch('*[_type == "tag"]');
+	return tags;
+}
+
+export const products: Readable<Product[] | []> = readable(await fetchProductData());
+export const emotions: Readable<Emotion[] | []> = readable(await fetchEmotionData());
+export const tags: Readable<Tag[] | []> = readable(await fetchTagData());
 
 export const productsView: Writable<Product[]> = writable([]);
-export const currentProduct: Writable<Product|Record<string, never>> = writable({});
+export const currentProduct: Writable<Product | Record<string, never>> = writable({});
 export const filters = writable({ selectedCat: 0, selectedRating: 0 });
