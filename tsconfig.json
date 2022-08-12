@@ -8,6 +8,7 @@
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
+			"$helpers": ["src/helpers"],
 			"$helpers/*": ["src/helpers/*"],
 			"$types": ["src/types"]
 		}

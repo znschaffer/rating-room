@@ -1,20 +1,6 @@
-import { getAvgRating } from '$helpers/getAvgRating.js';
-
-let testRating1 = {
-	_key: '5a80f4748d91',
-	comments: 'The new one seems pretty good but my old one died and got sticky.',
-	emotion: { _ref: '633f8d5f-897a-461f-a817-ee910f6ad614', _type: 'reference' },
-	name: 'xyn',
-	rating: 4
-};
-
-let testRating2 = {
-	_key: '5a80f4748d91',
-	comments: 'This is a fake comment for testing, wahoo',
-	emotion: { _ref: '633f8d5f-897a-461f-a817-ee910f6ad614', _type: 'reference' },
-	name: 'zane',
-	rating: 3
-};
+import { getAvgRating } from '$helpers';
+import { test, expect } from 'vitest';
+import { testRating1, testRating2 } from './data';
 
 test('return false if no parameters are passed', async () => {
 	expect(getAvgRating()).toBeFalsy();

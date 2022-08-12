@@ -1,7 +1,7 @@
 <script>
 	import SortOption from './SortOption.svelte';
 	import { productsView } from '$lib/stores';
-	import {normalize, getAvgRating } from '$helpers';
+	import { normalize, getAvgRating } from '$helpers';
 
 	const sortOptions = ['Rating', 'Name', 'Created'];
 
