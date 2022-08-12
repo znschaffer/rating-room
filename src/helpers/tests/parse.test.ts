@@ -13,23 +13,23 @@ describe('normalize', () => {
 });
 
 describe('parseSlug', () => {
-	const testStrings = ['test-product', 'TEST-pro-duct', 't-e-s-t-pr-od-u-c-t'];
+	const testStrings = ['test-product', 'TEST-pro-duct', 't-e-s-t-p-r-o-d-u-c-t'];
 	const key = ['test product', 'test pro duct', 't e s t p r o d u c t'];
 
 	test('it should remove dashes and replace with spaces', () => {
 		testStrings.forEach((str, i) => {
-			expect(normalize(str)).toEqual(key[i]);
+			expect(parseSlug(str)).toEqual(key[i]);
 		});
 	});
 });
 
 describe('parseName', () => {
-	const testStrings = ['test-product', 'TEST-pro-duct', 't-e-s-t-pr-od-u-c-t'];
+	const testStrings = ['test-product', 'test-pro-duct', 't-e-s-t-p-r-o-d-u-c-t'];
 	const key = ['test product', 'test pro duct', 't e s t p r o d u c t'];
 
 	test('it should replace spaces with dashes', () => {
 		key.forEach((str, i) => {
-			expect(normalize(str)).toEqual(testStrings[i]);
+			expect(parseName(str)).toEqual(testStrings[i]);
 		});
 	});
 });
