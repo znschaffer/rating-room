@@ -1,10 +1,10 @@
 import { getAvgRating } from '$helpers';
 import type { Product, Tag } from '$types';
 
-/* Default value for filter selectors, saved in store */
+/** Default value for filter selectors, saved in store */
 export const defaultFilter = { selectedCat: 0, selectedRating: 0 };
 
-/* Filters products by matching tags according to passed value */
+/** Filters products by matching tags according to passed value */
 export const filterByCat = (products: Product[], value: string, tags: Tag[]): Product[] =>
 	products.filter((product) => {
 		try {
@@ -18,6 +18,6 @@ export const filterByCat = (products: Product[], value: string, tags: Tag[]): Pr
 		}
 	});
 
-/* Filters by rating greater than what is passed in */
+/** Filters by rating greater than what is passed in */
 export const filterByRating = (products: Product[], value: string | number) =>
 	products.filter((product) => product.rating && getAvgRating(product.rating) >= Number(value));
