@@ -28,8 +28,8 @@
 
 	const { container, filterBar, filterTitle } = {
 		container: 'flex flex-col text-sm h-auto mb-4 mr-6 mt-4',
-		filterBar: 'pl-8 p-2 pr-2  flex justify-between',
-		filterTitle: 'font-bold',
+		filterBar: 'pl-4 p-2 pr-2  flex justify-between',
+		filterTitle: 'font-bold'
 	};
 </script>
 
@@ -39,16 +39,24 @@
 		<button on:click={reset}> ✖️ </button>
 	</div>
 
-	<select on:change={filter} class={`p-1 pl-9  mr-12 w-full focus:outline-none ${$filters.selectedCat? 'dither':''}`}
-	name="category" bind:value={$filters.selectedCat}>
+	<select
+		on:change={filter}
+		class={`p-1 pl-5  mr-12 w-full focus:outline-none ${$filters.selectedCat ? 'dither' : ''}`}
+		name="category"
+		bind:value={$filters.selectedCat}
+	>
 		<option select="selected" value={0}>Category</option>
 		{#each $tags as tag (tag.name)}
 			<option value={tag.name}>{tag.name}</option>
 		{/each}
 	</select>
 
-	<select on:change={filter} class={`p-1 pl-9  mr-12 w-full focus:outline-none ${$filters.selectedRating? 'dither':''}`}
-	 name="rating" bind:value={$filters.selectedRating}>
+	<select
+		on:change={filter}
+		class={`p-1 pl-5  mr-12 w-full focus:outline-none ${$filters.selectedRating ? 'dither' : ''}`}
+		name="rating"
+		bind:value={$filters.selectedRating}
+	>
 		<option select="selected" value={0}>Rating</option>
 		{#each stars as starValue, i (starValue)}
 			<option value={i + 1}>{starValue}</option>
