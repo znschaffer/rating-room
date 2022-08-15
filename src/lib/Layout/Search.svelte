@@ -10,7 +10,7 @@
 
 	const { container, input } = {
 		container: 'h-12 ml-auto mr-auto flex justify-center items-center',
-		input: 'outline outline-1 w-36 focus:outline-blue-600 p-1 text-sm'
+		input: 'outline outline-1 w-28 focus:outline-blue-600 p-1 text-sm'
 	};
 </script>
 

@@ -4,7 +4,7 @@
 	let current = true;
 
 	const { sortOption, noPointer } = {
-		sortOption: 'flex p-1 pl-9 mr-12 w-full flex justify-between',
+		sortOption: 'flex p-1 pl-5 mr-12 w-full flex justify-between',
 		noPointer: 'pointer-events-none'
 	};
 </script>

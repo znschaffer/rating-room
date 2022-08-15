@@ -17,7 +17,7 @@
 
 	const { main, container, sidebar } = {
 		main: 'flex w-screen h-screen sfmono',
-		container: 'flex flex-col h-screen justify-start shrink-0 overflow-auto w-56',
+		container: 'flex flex-col h-screen justify-start shrink-0 overflow-auto w-40',
 		sidebar: ' flex flex-col shrink-0'
 	};
 </script>
@@ -28,10 +28,10 @@
 		<div class={sidebar}>
 			<Search />
 			{#if !Object.keys($currentProduct).length}
-			<Filters {reset} />
-			<Sort />
+				<Filters {reset} />
+				<Sort />
 			{:else}
-			<Products productsView={$productsView} {currentProduct}/>
+				<Products productsView={$productsView} {currentProduct} />
 			{/if}
 		</div>
 	</div>
