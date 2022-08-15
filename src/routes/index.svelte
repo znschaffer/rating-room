@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/env';
 	import Grid from '$lib/Grid.svelte';
 	import Feature from '$lib/Feature/Feature.svelte';

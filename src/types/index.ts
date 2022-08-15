@@ -46,8 +46,8 @@ export interface Product {
 	description: string;
 	image?: Image;
 	name: string;
-	rating?: Ref[];
-	tags?: Ref[];
+	rating?: Ref[] | Rating[];
+	tags?: Ref[] | Tag[];
 	url?: string;
 	subname?: string;
 }
