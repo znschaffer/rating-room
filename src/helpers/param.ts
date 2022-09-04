@@ -1,6 +1,5 @@
 import { normalize, parseSlug, parseName } from '.';
 import type { Product } from '$types';
-import type { Writable } from 'svelte/store';
 
 /** Gets parameter from URL of field. Defaults to 'product' */
 export const getProdParam = (field = 'product'): string =>
@@ -14,10 +13,10 @@ export const findProdFromParam = (
 	$products.find(({ name }) => normalize(name) === parseSlug(param)) || {};
 
 /** Reset value with empty parameters */
-export const resetState = () => [{}, '', new URL(window.location.origin)] as const;
+export const _resetState = () => [{}, '', new URL(window.location.origin)] as const;
 
 /** Creates a new URL and then appends parsed product to it. */
-export const updateUrlParam = (url: string) => {
+export const _updateUrlParam = (url: string) => {
 	const updatedUrl = new URL(url);
 	return (product: Product) => {
 		updatedUrl.searchParams.set('product', parseName(product.name));
@@ -26,9 +25,24 @@ export const updateUrlParam = (url: string) => {
 };
 
 /**
- * Updates Window URL and checks that it is equal to product name
+ * Checks that window parameters are equal to passed product name
  */
-export const didWinUrlUpdate = (product: Product): boolean => {
+export const _didWinUrlUpdate = (product: Product): boolean => {
 	const params = new URLSearchParams(window.location.search).get('product');
 	return parseSlug(params) === normalize(product.name);
 };
+
+export const _pushParams = (url: URL) => window.history.pushState(window.history.state, '', url);
+
+/** Public */
+
+/** Navigates to product */
+export const goToProduct = ({ detail }) => {
+	const { product, currentProduct } = detail;
+	const urlWithParam = _updateUrlParam(window.location.href)(product);
+	_pushParams(urlWithParam);
+
+	return _didWinUrlUpdate(product) ? currentProduct.set(product) : resetHistory();
+};
+
+export const resetHistory = () => window.history.pushState(..._resetState());

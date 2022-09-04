@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	export let tag;
 	import { tags, currentProduct, productsView, products, filters } from '$lib/stores';
-	import { filterProductsBy, resetState } from '$helpers';
+	import { filterProductsBy, resetHistory } from '$helpers';
 
 	const tagName = $tags.find((dirTag) => dirTag._id === tag._ref).name;
 
@@ -11,7 +11,7 @@
 			filterProductsBy({ type: 'tag', value: tagName, products: $products, tags: $tags })
 		);
 		filters.set({ ...$filters, selectedCat: tagName });
-		history.pushState(...resetState());
+		resetHistory();
 	};
 </script>
 

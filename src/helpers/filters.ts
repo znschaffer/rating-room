@@ -17,8 +17,10 @@ export type FilterArgs = {
 	tags?: Tag[];
 };
 
-/** Default value for filter selectors, saved in store */
-export const defaultFilter = { selectedCat: 0, selectedRating: 0 };
+export type DefaultFilter = {
+	selectedCat: string | number;
+	selectedRating: string | number;
+};
 
 /** Returns matching product tag from full list of tags */
 export const findProductId = (tags: Tag[], name: string): string =>
@@ -35,6 +37,9 @@ export const _matchesTag = (product: Product, { value, $tags }: TagArgs): boolea
 /** Rating greater than what is passed in */
 export const _ratingHigher = (product: Product, { value }: RatingArgs) =>
 	product.rating && avgRating(product.rating) >= Number(value);
+
+/** Default value for filter selectors, saved in store */
+export const defaultFilter = { selectedCat: 0, selectedRating: 0 } as DefaultFilter;
 
 /** Filters products */
 export const filterProductsBy = ({ type, value, products, tags = [] }: FilterArgs) =>
