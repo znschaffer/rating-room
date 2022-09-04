@@ -1,3 +1,5 @@
+import type { Product } from '$types';
+
 /**  Removes casing and trims trailing/leading whitespace from string */
 export const normalize = (str: string): string => str.toLowerCase().trim();
 
@@ -6,3 +8,7 @@ export const parseSlug = (slug: string): string => normalize(slug).replaceAll('-
 
 /** Parses a name to return normalized slug with all spaces replaced with dashes */
 export const parseName = (name: string): string => normalize(name).replaceAll(' ', '-');
+
+/** Product name includes value */
+export const includesName = (name: string, product: Product) =>
+	normalize(product.name).includes(normalize(name));

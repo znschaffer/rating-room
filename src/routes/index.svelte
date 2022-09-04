@@ -3,12 +3,12 @@
 	import Grid from '$lib/Grid.svelte';
 	import Feature from '$lib/Feature/Feature.svelte';
 	import { products, productsView, currentProduct } from '$lib/stores';
-	import { findProdFromParam, getProdParam, goToProduct, resetHistory } from '$helpers';
+	import { getProdParam, goToProduct, resetHistory, setCurrProdFromParam } from '$helpers';
 
 	$: productsView.set($products);
 
 	const load = () => {
-		currentProduct.set(findProdFromParam(getProdParam(), $products));
+		setCurrProdFromParam(currentProduct, $products);
 		if (getProdParam() && JSON.stringify($currentProduct) === '{}') resetHistory();
 	};
 

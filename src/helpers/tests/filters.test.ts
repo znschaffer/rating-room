@@ -1,4 +1,4 @@
-import { filterProductsBy } from '$helpers';
+import { singleFilter } from '$helpers';
 import type { Product, Tag } from '$types';
 import { describe, expect, test } from 'vitest';
 import { testProducts, testTags } from './data';
@@ -6,7 +6,7 @@ import { testProducts, testTags } from './data';
 describe('filterProducts', () => {
 	test('filters products by passed category tag', () => {
 		expect(
-			filterProductsBy({
+			singleFilter({
 				type: 'tag',
 				products: testProducts as Product[],
 				value: 'Exercise',
@@ -14,7 +14,7 @@ describe('filterProducts', () => {
 			})
 		).toHaveLength(1);
 		expect(
-			filterProductsBy({
+			singleFilter({
 				type: 'tag',
 				products: testProducts as Product[],
 				value: 'Electronics',
@@ -25,7 +25,7 @@ describe('filterProducts', () => {
 
 	test('filter by tag returns nothing if tag does not exist', () => {
 		expect(
-			filterProductsBy({
+			singleFilter({
 				type: 'tag',
 				products: testProducts as Product[],
 				value: 'grapes',
@@ -36,11 +36,11 @@ describe('filterProducts', () => {
 
 	test('filters ratings only greater than # passed in', () => {
 		expect(
-			filterProductsBy({ type: 'rating', products: testProducts as Product[], value: 3 })
+			singleFilter({ type: 'rating', products: testProducts as Product[], value: 3 })
 		).toHaveLength(3);
 
 		expect(
-			filterProductsBy({ type: 'rating', products: testProducts as Product[], value: 5 })
+			singleFilter({ type: 'rating', products: testProducts as Product[], value: 5 })
 		).toHaveLength(0);
 	});
 });

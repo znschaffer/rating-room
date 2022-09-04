@@ -1,4 +1,4 @@
-export * from './utils/parse';
-export * from './utils/avgRating';
-export * from './param';
+export * from './avgRating';
 export * from './filters';
+export * from './param';
+export * from './parse';

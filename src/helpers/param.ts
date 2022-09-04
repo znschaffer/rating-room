@@ -1,5 +1,6 @@
 import { normalize, parseSlug, parseName } from '.';
 import type { Product } from '$types';
+import type { Writable } from 'svelte/store';
 
 /** Gets parameter from URL of field. Defaults to 'product' */
 export const getProdParam = (field = 'product'): string =>
@@ -46,3 +47,8 @@ export const goToProduct = ({ detail }) => {
 };
 
 export const resetHistory = () => window.history.pushState(..._resetState());
+
+export const setCurrProdFromParam = (
+	currentProduct: Writable<Product | Record<string, unknown>>,
+	products: Product[]
+) => currentProduct.set(findProdFromParam(getProdParam(), products));

@@ -21,5 +21,5 @@ export const emotions: Readable<Emotion[] | []> = readable(await fetchEmotionDat
 export const tags: Readable<Tag[] | []> = readable(await fetchTagData());
 
 export const productsView: Writable<Product[]> = writable([]);
-export const currentProduct: Writable<Product | Record<string, never>> = writable({});
+export const currentProduct: Writable<Product | Record<string, unknown>> = writable({});
 export const filters = writable(defaultFilter);

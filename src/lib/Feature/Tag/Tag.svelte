@@ -1,14 +1,15 @@
 <script lang="ts">
-	export let tag;
+	import type { Ref } from '$types';
 	import { tags, currentProduct, productsView, products, filters } from '$lib/stores';
-	import { filterProductsBy, resetHistory } from '$helpers';
+	import { singleFilter, resetHistory } from '$helpers';
 
+	export let tag: Ref;
 	const tagName = $tags.find((dirTag) => dirTag._id === tag._ref).name;
 
 	const filter = () => {
 		currentProduct.set({});
 		productsView.set(
-			filterProductsBy({ type: 'tag', value: tagName, products: $products, tags: $tags })
+			singleFilter({ type: 'tag', value: tagName, products: $products, tags: $tags })
 		);
 		filters.set({ ...$filters, selectedCat: tagName });
 		resetHistory();
