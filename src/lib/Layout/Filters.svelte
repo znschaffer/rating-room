@@ -7,15 +7,21 @@
 	const stars = ['⭐ ⬆', '⭐⭐ ⬆', '⭐⭐⭐ ⬆', '⭐⭐⭐⭐ ⬆', '⭐⭐⭐⭐⭐ ⬆'];
 
 	const filterProducts = (name, otherVal, { rating = '', tag = '', $tags = [] }) => {
-		const filterArgs = (name) => (name === 'rating' ? { value: rating } : { value: tag, $tags });
-		const otherFilterArgs = (name) =>
-			name === 'rating' ? { value: otherVal } : { value: otherVal, $tags };
-		const otherValName = name === 'rating' ? 'tag' : 'rating';
+		const { otherValName, filterArgs, otherFilterArgs } =
+			name === 'rating'
+				? {
+						otherValName: 'tag',
+						filterArgs: { value: rating },
+						otherFilterArgs: { value: otherVal, $tags }
+				  }
+				: {
+						otherValName: 'rating',
+						filterArgs: { value: tag, $tags },
+						otherFilterArgs: { value: otherVal }
+				  };
 
-		const filterOne = filterProductsBy(name, $products, filterArgs(name));
-		const filterBoth = filterProductsBy(otherValName, filterOne, otherFilterArgs(otherValName));
-
-		console.log(filterOne, filterBoth);
+		const filterOne = filterProductsBy(name, $products, filterArgs);
+		const filterBoth = filterProductsBy(otherValName, filterOne, otherFilterArgs);
 
 		return otherVal ? filterBoth : filterOne;
 	};

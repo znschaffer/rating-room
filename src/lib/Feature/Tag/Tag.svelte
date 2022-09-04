@@ -22,6 +22,6 @@
 	}
 
 	.container {
-		@apply text-sm flex rounded-md pl-2 pr-2 pt-1 pb-1 bg-gray-200;
+		@apply text-sm flex rounded-md pl-2 pr-2 pt-1 pb-1 bg-gray-200 w-auto;
 	}
 </style>
