@@ -1,17 +1,22 @@
 <script>
 	import { urlFor } from './sanityClient';
 	import { currentProduct } from '$lib/stores';
-	import { toProduct } from '$helpers';
 	export let products;
+	import { createEventDispatcher } from 'svelte';
 
-	const { container } = {
-		container: 'flex flex-wrap mt-1 mb-1 justify-start'
-	};
+	const dispatch = createEventDispatcher();
 </script>
 
-<div class={container}>
+<div class="container">
 	{#each products as product}
-		<button on:click={() => toProduct(product, currentProduct)}>
+		<button
+			on:click={() => {
+				dispatch('toProduct', {
+					product,
+					currentProduct
+				});
+			}}
+		>
 			{#if product.image}
 				<img src={urlFor(product.image).width(150).url()} alt={product.name} />
 			{/if}
@@ -19,7 +24,10 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
+	.container {
+		@apply flex flex-wrap mt-1 mb-1 justify-start;
+	}
 	img:hover {
 		background-image: url('dither.gif');
 		background-repeat: repeat;

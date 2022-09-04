@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { products, productsView, currentProduct, filters } from '$lib/stores';
-	import { defaultFilter, resetParams } from '$helpers';
+	import { defaultFilter, resetHistory, goToProduct } from '$helpers';
 	import Products from '$lib/Layout/Products.svelte';
 	import Header from '$lib/Layout/Header.svelte';
 	import Search from '$lib/Layout/Search.svelte';
@@ -10,35 +10,38 @@
 
 	const reset = () => {
 		productsView.set($products);
-		resetParams();
+		resetHistory();
 		currentProduct.set({});
 		filters.set(structuredClone(defaultFilter));
 	};
-
-	const { main, container, sidebar } = {
-		main: 'flex w-screen h-screen sfmono',
-		container: 'flex flex-col h-screen justify-start shrink-0 overflow-auto w-40',
-		sidebar: ' flex flex-col shrink-0'
-	};
 </script>
 
-<main class={main}>
-	<div class={container}>
+<main class="main sfmono">
+	<div class="container">
 		<Header {reset} />
-		<div class={sidebar}>
+		<div class="sidebar">
 			<Search />
 			{#if !Object.keys($currentProduct).length}
 				<Filters {reset} />
 				<Sort />
 			{:else}
-				<Products productsView={$productsView} {currentProduct} />
+				<Products productsView={$productsView} {currentProduct} on:toProduct={goToProduct} />
 			{/if}
 		</div>
 	</div>
 	<slot />
 </main>
 
-<style>
+<style lang="postcss">
+	.main {
+		@apply flex w-screen h-screen;
+	}
+	.container {
+		@apply flex flex-col h-screen justify-start shrink-0 overflow-auto w-40;
+	}
+	.sidebar {
+		@apply flex flex-col shrink-0;
+	}
 	::-webkit-scrollbar {
 		display: none;
 	}

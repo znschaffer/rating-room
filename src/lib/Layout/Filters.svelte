@@ -1,48 +1,36 @@
 <script>
 	import { productsView, products, tags, filters } from '$lib/stores';
-	import { normalize, filterProductsBy } from '$helpers';
+	import { normalize, multiFilter } from '$helpers';
 	export let reset;
 	let { selectedCat, selectedRating } = $filters;
 
 	const stars = ['⭐ ⬆', '⭐⭐ ⬆', '⭐⭐⭐ ⬆', '⭐⭐⭐⭐ ⬆', '⭐⭐⭐⭐⭐ ⬆'];
-
-	const filterProducts = (name, otherVal, { rating = '', tag = '', $tags = [] }) => {
-		const { otherValName, filterArgs, otherFilterArgs } =
-			name === 'rating'
-				? {
-						otherValName: 'tag',
-						filterArgs: { value: rating },
-						otherFilterArgs: { value: otherVal, $tags }
-				  }
-				: {
-						otherValName: 'rating',
-						filterArgs: { value: tag, $tags },
-						otherFilterArgs: { value: otherVal }
-				  };
-
-		const filterOne = filterProductsBy(name, $products, filterArgs);
-		const filterBoth = filterProductsBy(otherValName, filterOne, otherFilterArgs);
-
-		return otherVal ? filterBoth : filterOne;
-	};
 
 	const filter = ({ target: { name, value } }) => {
 		if (Number(value) === 0) {
 			reset();
 			return;
 		}
-		switch (normalize(name)) {
-			case 'rating':
-				productsView.set(
-					filterProducts(name, selectedCat, { rating: value, tag: selectedCat, $tags })
-				);
-				break;
-			case 'tag':
-				productsView.set(
-					filterProducts(name, selectedRating, { rating: selectedRating, tag: value, $tags })
-				);
-				break;
-		}
+		const ratingArgs = {
+			name,
+			otherVal: selectedCat,
+			rating: value,
+			tag: selectedCat,
+			$tags,
+			$products
+		};
+		const tagArgs = {
+			name,
+			otherVal: selectedRating,
+			rating: selectedRating,
+			tag: value,
+			$tags,
+			$products
+		};
+
+		return normalize(name) === 'rating'
+			? productsView.set(multiFilter(ratingArgs))
+			: productsView.set(multiFilter(tagArgs));
 	};
 </script>
 

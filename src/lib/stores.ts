@@ -1,4 +1,5 @@
 import type { Tag, Product, Emotion } from '$types';
+import { defaultFilter } from '$helpers';
 import { writable, type Writable, readable, type Readable } from 'svelte/store';
 import { client } from '$lib/sanityClient';
 
@@ -20,5 +21,5 @@ export const emotions: Readable<Emotion[] | []> = readable(await fetchEmotionDat
 export const tags: Readable<Tag[] | []> = readable(await fetchTagData());
 
 export const productsView: Writable<Product[]> = writable([]);
-export const currentProduct: Writable<Product | Record<string, never>> = writable({});
-export const filters = writable({ selectedCat: 0, selectedRating: 0 });
+export const currentProduct: Writable<Product | Record<string, unknown>> = writable({});
+export const filters = writable(defaultFilter);

@@ -33,19 +33,22 @@
 				break;
 		}
 	};
-
-	const { container, sortBar, sortTitle } = {
-		container: 'flex flex-col text-sm h-auto mb-4 mr-6',
-		sortBar: 'pl-4 p-2 flex justify-between',
-		sortTitle: 'font-bold'
-	};
 </script>
 
-<div class={container}>
-	<div class={sortBar}>
-		<div class={sortTitle}>Sort</div>
+<div class="container">
+	<div class="sortBar">
+		<div class="font-bold">Sort</div>
 	</div>
 	{#each sortOptions as option}
 		<SortOption {option} {sort} />
 	{/each}
 </div>
+
+<style lang="postcss">
+	.container {
+		@apply flex flex-col text-sm h-auto mb-4 mr-6;
+	}
+	.sortBar {
+		@apply pl-4 p-2 flex justify-between;
+	}
+</style>
