@@ -45,7 +45,7 @@
 			{/each}
 		</div>
 	{/if}
-	<PrevNext />
+	<PrevNext on:toProduct />
 </div>
 
 <style lang="postcss">

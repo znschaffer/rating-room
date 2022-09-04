@@ -1,18 +1,21 @@
-<script>
+<script lang="ts">
 	import { currentProduct, productsView } from '$lib/stores';
-	import { toProduct } from '$helpers';
+	import { createEventDispatcher } from 'svelte';
 
 	$: foundIndex = $productsView.findIndex((prod) => prod._id === $currentProduct._id);
 	$: PREV = $productsView[foundIndex - 1];
 	$: NEXT = $productsView[foundIndex + 1];
 
+	const dispatch = createEventDispatcher();
+
 	const navigate = (e) => {
-		if (e.target.name === 'prev' && PREV) {
-			toProduct(PREV, currentProduct);
-		}
-		if (e.target.name === 'next' && NEXT) {
-			toProduct(NEXT, currentProduct);
-		}
+		let product;
+		if (e.target.name === 'prev' && PREV) product = PREV;
+		if (e.target.name === 'next' && NEXT) product = NEXT;
+		dispatch('toProduct', {
+			product,
+			currentProduct
+		});
 	};
 
 	const { container, btn } = {
@@ -23,7 +26,7 @@
 
 <div class={container}>
 	{#if PREV}
-		<button on:click={navigate} class={`${btn} pr-4`} name='prev'
+		<button on:click={navigate} class={`${btn} pr-4`} name="prev"
 			><svg focusable="false" width={50} height={50} viewBox="0 0 24 24">
 				<path d="m14 7-5 5 5 5V7z" />
 			</svg><span class="text-left">{PREV.name}</span></button
@@ -33,7 +36,7 @@
 	{/if}
 
 	{#if NEXT}
-		<button on:click={navigate} class={`${btn} pl-4`} name='next'
+		<button on:click={navigate} class={`${btn} pl-4`} name="next"
 			><span class="text-right">{NEXT.name}</span><svg
 				focusable="false"
 				width={50}
@@ -55,6 +58,6 @@
 
 	button:hover {
 		background-image: url('dither.gif');
-    background-repeat: repeat;
+		background-repeat: repeat;
 	}
 </style>

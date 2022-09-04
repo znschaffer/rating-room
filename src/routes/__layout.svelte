@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { products, productsView, currentProduct, filters } from '$lib/stores';
-	import { defaultFilter, resetState } from '$helpers';
+	import { defaultFilter, didWinUrlUpdate, resetState, updateUrlParam } from '$helpers';
 	import Products from '$lib/Layout/Products.svelte';
 	import Header from '$lib/Layout/Header.svelte';
 	import Search from '$lib/Layout/Search.svelte';
@@ -13,6 +13,21 @@
 		history.pushState(...resetState());
 		currentProduct.set({});
 		filters.set(structuredClone(defaultFilter));
+	};
+
+	/**
+	 * Takes a `product` and `currentProduct` store
+	 * Sets URL params to parsed product name and updates Browser URL
+	 * Sets `currentProduct` store to `product`.
+	 */
+	const goToProduct = ({ detail }) => {
+		const { product, currentProduct } = detail;
+		const urlWithParam = updateUrlParam(window.location.href)(product);
+		window.history.pushState(window.history.state, '', urlWithParam);
+
+		return didWinUrlUpdate(product)
+			? currentProduct.set(product)
+			: history.pushState(...resetState());
 	};
 
 	const { main, container, sidebar } = {
@@ -31,7 +46,7 @@
 				<Filters {reset} />
 				<Sort />
 			{:else}
-				<Products productsView={$productsView} {currentProduct} />
+				<Products productsView={$productsView} {currentProduct} on:toProduct={goToProduct} />
 			{/if}
 		</div>
 	</div>
