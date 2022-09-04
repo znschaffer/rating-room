@@ -6,53 +6,50 @@
 
 	const stars = ['⭐ ⬆', '⭐⭐ ⬆', '⭐⭐⭐ ⬆', '⭐⭐⭐⭐ ⬆', '⭐⭐⭐⭐⭐ ⬆'];
 
+	const filterProducts = (name, otherVal, { rating = '', tag = '', $tags = [] }) => {
+		const filterArgs = (name) => (name === 'rating' ? { value: rating } : { value: tag, $tags });
+		const otherFilterArgs = (name) =>
+			name === 'rating' ? { value: otherVal } : { value: otherVal, $tags };
+		const otherValName = name === 'rating' ? 'tag' : 'rating';
+
+		const filterOne = filterProductsBy(name, $products, filterArgs(name));
+		const filterBoth = filterProductsBy(otherValName, filterOne, otherFilterArgs(otherValName));
+
+		console.log(filterOne, filterBoth);
+
+		return otherVal ? filterBoth : filterOne;
+	};
+
 	const filter = ({ target: { name, value } }) => {
 		if (Number(value) === 0) {
 			reset();
-
 			return;
 		}
 		switch (normalize(name)) {
 			case 'rating':
-				if (selectedCat) {
-					const filteredByRating = filterProductsBy('rating', $products, { value });
-					const filteredByTagsAndRating = filterProductsBy('tag', filteredByRating, {
-						value: selectedCat,
-						$tags
-					});
-
-					productsView.set(filteredByTagsAndRating);
-				} else productsView.set(filterProductsBy('rating', $products, { value }));
+				productsView.set(
+					filterProducts(name, selectedCat, { rating: value, tag: selectedCat, $tags })
+				);
 				break;
-			case 'category':
-				if (selectedRating) {
-					const filteredByTag = filterProductsBy('tag', $products, { value, $tags });
-					const filteredByTagsAndRating = filterProductsBy('rating', filteredByTag, {
-						value: selectedRating
-					});
-					productsView.set(filteredByTagsAndRating);
-				} else productsView.set(filterProductsBy('tag', $products, { value, $tags }));
+			case 'tag':
+				productsView.set(
+					filterProducts(name, selectedRating, { rating: selectedRating, tag: value, $tags })
+				);
 				break;
 		}
 	};
-
-	const { container, filterBar, filterTitle } = {
-		container: 'flex flex-col text-sm h-auto mb-4 mr-6 mt-4',
-		filterBar: 'pl-4 p-2 pr-2  flex justify-between',
-		filterTitle: 'font-bold'
-	};
 </script>
 
-<div class={container}>
-	<div class={filterBar}>
-		<div class={filterTitle}>Filter</div>
+<div class="container">
+	<div class="filterBar">
+		<div class="filterTitle">Filter</div>
 		<button on:click={reset}> ✖️ </button>
 	</div>
 
 	<select
 		on:change={filter}
 		class={`p-1 pl-5  mr-12 w-full focus:outline-none ${$filters.selectedCat ? 'dither' : ''}`}
-		name="category"
+		name="tag"
 		bind:value={$filters.selectedCat}
 	>
 		<option select="selected" value={0}>Category</option>
@@ -74,7 +71,18 @@
 	</select>
 </div>
 
-<style>
+<style lang="postcss">
+	.container {
+		@apply flex flex-col text-sm h-auto mb-4 mr-6 mt-4;
+	}
+
+	.filterBar {
+		@apply pl-4 p-2 pr-2  flex justify-between;
+	}
+
+	.filterTitle {
+		@apply font-bold;
+	}
 	select:hover {
 		background-image: url('dither.gif');
 		background-repeat: repeat;
