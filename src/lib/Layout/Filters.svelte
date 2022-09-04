@@ -1,6 +1,6 @@
 <script>
 	import { productsView, products, tags, filters } from '$lib/stores';
-	import { normalize, filterByRating, filterByCat } from '$helpers';
+	import { normalize, filterProductsBy } from '$helpers';
 	export let reset;
 	let { selectedCat, selectedRating } = $filters;
 
@@ -14,14 +14,24 @@
 		}
 		switch (normalize(name)) {
 			case 'rating':
-				if (selectedCat)
-					productsView.set(filterByCat(filterByRating($products, value), selectedCat, $tags));
-				else productsView.set(filterByRating($products, value));
+				if (selectedCat) {
+					const filteredByRating = filterProductsBy('rating', $products, { value });
+					const filteredByTagsAndRating = filterProductsBy('tag', filteredByRating, {
+						value: selectedCat,
+						$tags
+					});
+
+					productsView.set(filteredByTagsAndRating);
+				} else productsView.set(filterProductsBy('rating', $products, { value }));
 				break;
 			case 'category':
-				if (selectedRating)
-					productsView.set(filterByRating(filterByCat($products, value, $tags), selectedRating));
-				else productsView.set(filterByCat($products, value, $tags));
+				if (selectedRating) {
+					const filteredByTag = filterProductsBy('tag', $products, { value, $tags });
+					const filteredByTagsAndRating = filterProductsBy('rating', filteredByTag, {
+						value: selectedRating
+					});
+					productsView.set(filteredByTagsAndRating);
+				} else productsView.set(filterProductsBy('tag', $products, { value, $tags }));
 				break;
 		}
 	};
