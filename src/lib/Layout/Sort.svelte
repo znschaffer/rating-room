@@ -1,7 +1,7 @@
 <script>
 	import SortOption from './SortOption.svelte';
 	import { productsView } from '$lib/stores';
-	import { normalize, getAvgRating } from '$helpers';
+	import { normalize, avgRating } from '$helpers';
 
 	const sortOptions = ['Rating', 'Name', 'Created'];
 
@@ -10,8 +10,8 @@
 			case 'rating':
 				productsView.set(
 					$productsView.sort((prev, curr) => {
-						if (current) return getAvgRating(prev.rating) < getAvgRating(curr.rating) ? -1 : 1;
-						else return getAvgRating(prev.rating) < getAvgRating(curr.rating) ? 1 : -1;
+						if (current) return avgRating(prev.rating) < avgRating(curr.rating) ? -1 : 1;
+						else return avgRating(prev.rating) < avgRating(curr.rating) ? 1 : -1;
 					})
 				);
 				break;
