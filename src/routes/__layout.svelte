@@ -1,7 +1,7 @@
 <script>
 	import '../app.css';
 	import { products, productsView, currentProduct, filters } from '$lib/stores';
-	import { defaultFilter, resetParams } from '$helpers';
+	import { defaultFilter, resetState } from '$helpers';
 	import Products from '$lib/Layout/Products.svelte';
 	import Header from '$lib/Layout/Header.svelte';
 	import Search from '$lib/Layout/Search.svelte';
@@ -10,7 +10,7 @@
 
 	const reset = () => {
 		productsView.set($products);
-		resetParams();
+		history.pushState(...resetState());
 		currentProduct.set({});
 		filters.set(structuredClone(defaultFilter));
 	};

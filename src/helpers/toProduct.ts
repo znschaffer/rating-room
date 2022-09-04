@@ -1,13 +1,11 @@
-import { parseSlug, normalize, setUrlParam, resetParams } from '.';
+import { parseSlug, normalize, updateUrlParam, resetState } from '.';
 import type { Product } from '$types';
-import type { Writable} from "svelte/store"
-
+import type { Writable } from 'svelte/store';
 
 /**
  * Updates Window URL and checks that it is equal to product name
  */
-const didWinUrlUpdate = (url: URL, product:Product): boolean => {
-	window.history.pushState(window.history.state, '', url);
+const didWinUrlUpdate = (product: Product): boolean => {
 	const params = new URLSearchParams(window.location.search).get('product');
 	return parseSlug(params) === normalize(product.name);
 };
@@ -17,6 +15,12 @@ const didWinUrlUpdate = (url: URL, product:Product): boolean => {
  * Sets URL params to parsed product name and updates Browser URL
  * Sets `currentProduct` store to `product`.
  */
-export const toProduct = (product: Product, currentProduct:Writable<Product>) =>
-	didWinUrlUpdate(setUrlParam((new URL(window.location.href)), product), product)?
-	currentProduct.set(product): resetParams()
+export const toProduct = (product: Product, currentProduct: Writable<Product>) => {
+	const urlWithParam = updateUrlParam(window.location.href)(product);
+
+	window.history.pushState(window.history.state, '', urlWithParam);
+
+	return didWinUrlUpdate(product)
+		? currentProduct.set(product)
+		: history.pushState(...resetState());
+};

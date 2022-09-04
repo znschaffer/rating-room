@@ -1,5 +1,4 @@
 import { normalize, parseSlug, parseName } from '.';
-import type { UrlObject } from 'url';
 import type { Product } from '$types';
 
 /** Gets parameter from URL of field. Defaults to 'product' */
@@ -8,16 +7,19 @@ export const getProdParam = (field = 'product'): string =>
 
 /** Finds a product in products store with matching name as parameter. */
 export const findProdFromParam = (
-	param: URLSearchParams,
+	param: string,
 	$products: Product[]
 ): Product | Record<string, never> =>
 	$products.find(({ name }) => normalize(name) === parseSlug(param)) || {};
 
-/** Resets params and navigates back to index */
-export const resetParams = () => history.pushState({}, '', new URL(window.location.origin));
+/** Reset value with empty parameters */
+export const resetState = () => [{}, '', new URL(window.location.origin)] as const;
 
-/** Updates a url with search parameters with name of product parameter. */
-export const setUrlParam = (url: URL, product: Product): UrlObject => {
-	url.searchParams.set('product', parseName(product.name));
-	return url;
+/** Creates a new URL and then appends parsed product to it. */
+export const updateUrlParam = (url: string) => {
+	const updatedUrl = new URL(url);
+	return (product: Product) => {
+		updatedUrl.searchParams.set('product', parseName(product.name));
+		return updatedUrl;
+	};
 };

@@ -2,14 +2,15 @@
 	import { browser } from '$app/env';
 	import Grid from '$lib/Grid.svelte';
 	import Feature from '$lib/Feature/Feature.svelte';
-	import { products, productsView, tags, currentProduct, emotions } from '$lib/stores';
-	import { findProdFromParam, getProdParam, resetParams } from '$helpers';
+	import { products, productsView, currentProduct } from '$lib/stores';
+	import { findProdFromParam, getProdParam, resetState } from '$helpers';
 
 	productsView.set($products);
 
 	const load = () => {
 		currentProduct.set(findProdFromParam(getProdParam(), $products));
-		if (getProdParam() && JSON.stringify($currentProduct) === '{}') resetParams();
+		if (getProdParam() && JSON.stringify($currentProduct) === '{}')
+			history.pushState(...resetState());
 	};
 
 	if (browser) {
