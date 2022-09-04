@@ -18,20 +18,22 @@
 			load();
 		};
 	}
-
-	const { container } = {
-		container: 'h-screen overflow-auto w-screen'
-	};
 </script>
 
 <svelte:head>
 	<title>Rating Room</title>
 </svelte:head>
 
-<div class={container}>
+<div class="container">
 	{#if Object.keys($currentProduct).length}
 		<Feature />
 	{:else}
 		<Grid products={$productsView} />
 	{/if}
 </div>
+
+<style lang="postcss">
+	.container {
+		@apply h-screen overflow-auto w-screen;
+	}
+</style>
