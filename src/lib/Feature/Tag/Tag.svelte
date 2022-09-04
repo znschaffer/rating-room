@@ -7,7 +7,9 @@
 
 	const filter = () => {
 		currentProduct.set({});
-		productsView.set(filterProductsBy('tag', $products, { value: tagName, $tags }));
+		productsView.set(
+			filterProductsBy({ type: 'tag', value: tagName, products: $products, tags: $tags })
+		);
 		filters.set({ ...$filters, selectedCat: tagName });
 		resetParams();
 	};

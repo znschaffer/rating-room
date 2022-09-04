@@ -46,21 +46,6 @@ export interface Product {
 	description: string;
 	image?: Image;
 	name: string;
-	rating?: Ref[];
-	tags?: Ref[];
-	url?: string;
-	subname?: string;
-}
-
-export interface FullProduct {
-	_createdAt: string;
-	_id: string;
-	_rev: string;
-	_type: 'product';
-	_updatedAt: string;
-	description: string;
-	image?: Image;
-	name: string;
 	rating?: Rating[];
 	tags?: Ref[];
 	url?: string;
