@@ -1,3 +1,5 @@
+import type { Product, Tag } from '$types';
+
 export const testRating1 = {
 	_key: '5a80f4748d91',
 	comments: 'The new one seems pretty good but my old one died and got sticky.',
@@ -174,7 +176,7 @@ export const testProducts = [
 		],
 		url: 'https://www.muji.us/products/gel-ink-cap-type-ballpoint-pen-0-38mm-10-pieces-set-9a63?refSrc=6787624992958&nosto=productpage-nosto-4-copy'
 	}
-];
+] as Product[];
 
 export const testTags = [
 	{
@@ -425,4 +427,4 @@ export const testTags = [
 		},
 		name: 'Drink'
 	}
-];
+] as Tag[];
