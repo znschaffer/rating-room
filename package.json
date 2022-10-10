@@ -55,7 +55,8 @@
 	"dependencies": {
 		"@sanity/client": "^3.3.2",
 		"@sanity/image-url": "^1.0.1",
-		"@sanity/types": "^2.29.5"
+		"@sanity/types": "^2.29.5",
+		"svelte-media-query": "^1.1.2"
 	},
 	"config": {
 		"commitizen": {
