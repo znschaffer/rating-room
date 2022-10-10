@@ -19,7 +19,7 @@
 	};
 
 	const { container, btn } = {
-		container: 'flex justify-between m-16 mt-2 mb-6 h-12',
+		container: 'flex justify-between m-4 sm:m-16 sm:mt-2 sm:mb-6 h-auto sm:h-12 text-sm',
 		btn: 'flex items-center justify-end'
 	};
 </script>

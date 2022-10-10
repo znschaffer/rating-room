@@ -15,8 +15,10 @@
 	}
 
 	const { container, emotion, emotionName, details, name, comments, ratingStars, spacer, img } = {
-		container: 'border border-1 border-black h-full min-h-36 m-16 mt-0 mb-4 flex w-100',
-		emotion: 'w-56 flex-shrink-0 bg-gray-100 flex flex-col items-center p-2 justify-evenly h-100',
+		container:
+			'border border-1 border-black h-full min-h-36 mx-6 mb-2 sm:m-16 sm:mt-0 sm:mb-4 flex w-100',
+		emotion:
+			'hidden sm:flex w-56 flex-shrink-0 bg-gray-100 flex flex-col items-center p-2 justify-evenly h-100',
 		emotionName: 'text-sm',
 		details: 'flex flex-col p-4',
 		name: 'text-xl font-bold',

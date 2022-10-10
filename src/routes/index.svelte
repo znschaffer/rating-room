@@ -34,6 +34,6 @@
 
 <style lang="postcss">
 	.container {
-		@apply h-screen overflow-auto w-screen;
+		@apply h-screen overflow-auto w-full;
 	}
 </style>
