@@ -40,7 +40,7 @@
 
 <style lang="postcss">
 	.main {
-		@apply flex w-screen h-screen flex-col sm:flex-row;
+		@apply flex h-screen flex-col sm:flex-row;
 	}
 	.container {
 		@apply flex flex-col justify-start shrink-0 overflow-auto m-auto sm:w-40 sm:h-screen sm:m-0;
